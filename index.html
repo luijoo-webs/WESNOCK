@@ -906,6 +906,226 @@ td.neg{color:var(--err);font-weight:700}td.pos{color:var(--ok);font-weight:700}
 .hbar__val small{display:block;font-family:var(--f-body);font-weight:500;font-size:11px;color:var(--muted)}
 @media (max-width:1180px){.kpis--6{grid-template-columns:repeat(3,minmax(0,1fr))}.kpis--5{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media (max-width:720px){.kpis,.kpis--5,.kpis--6{grid-template-columns:repeat(2,minmax(0,1fr))}.live{display:none}.stat-filter{position:static}.hbar{grid-template-columns:minmax(0,1fr) auto}.hbar__track{grid-column:1/-1;grid-row:2}}
+
+/* =========================================================
+   V4 — Mi cuenta, ventas físicas, inventario por lote,
+   facturación y notificaciones
+   ========================================================= */
+/* Autenticación: vistas independientes */
+.auth-page{display:flex;justify-content:center;padding-bottom:clamp(56px,8vw,96px)}
+.auth-card{width:min(440px,100%);background:#fff;border:1px solid var(--line);padding:clamp(24px,4vw,40px);animation:viewIn .5s var(--ease-out)}
+.auth-mark{display:block;font-size:15px;margin-bottom:22px}
+.auth-title{margin:0;font-family:var(--f-display);font-weight:900;text-transform:uppercase;letter-spacing:-.02em;font-size:clamp(28px,4vw,36px);line-height:1}
+.auth-sub{color:var(--muted);font-size:14px;margin:10px 0 24px}
+.auth-card .stack{gap:14px}
+.auth-card .btn{min-height:52px}
+.auth-forgot{margin:2px 0 0;font-size:13.5px;color:var(--muted)}
+.auth-alt{display:grid;gap:10px;margin-top:24px;padding-top:22px;border-top:1px solid var(--line);font-size:14px;color:var(--muted);text-align:center}
+.auth-guest{text-align:center;font-size:13px;color:var(--muted);margin:18px 0 0}
+.auth-done{text-align:center;display:grid;justify-items:center;gap:10px}
+.auth-done .btn{margin-top:10px}
+.pw{position:relative}
+.pw input{padding-right:48px}
+.pw__toggle{position:absolute;right:4px;top:50%;transform:translateY(-50%);width:42px;height:42px;display:grid;place-items:center;color:var(--muted)}
+.pw__toggle[aria-pressed="true"]{color:var(--ink)}
+.field-label{font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:700}
+
+/* Mi cuenta */
+.acct-head{display:flex;align-items:center;gap:18px;flex-wrap:wrap;background:#fff;border:1px solid var(--line);padding:clamp(18px,3vw,28px);margin-top:8px}
+.acct-avatar{width:64px;height:64px;border-radius:50%;background:var(--ink);color:#f6f5f2;display:grid;place-items:center;flex:none}
+.acct-id{min-width:0;flex:1}
+.acct-name{margin:0;font-family:var(--f-display);font-weight:900;text-transform:uppercase;letter-spacing:-.02em;font-size:clamp(24px,3.2vw,36px);line-height:1.02;overflow-wrap:anywhere}
+.acct-mail{margin:6px 0 0;color:var(--muted);font-size:14px;overflow-wrap:anywhere}
+.acct-since{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.acct{display:grid;grid-template-columns:250px minmax(0,1fr);gap:clamp(18px,3vw,40px);margin-top:clamp(18px,2.4vw,28px);align-items:start}
+.acct-nav{display:grid;gap:2px;position:sticky;top:calc(var(--nav-h) + 20px);background:#fff;border:1px solid var(--line);padding:8px}
+.acct-nav a,.acct-nav__out{display:flex;align-items:center;gap:12px;padding:12px 14px;font-size:14px;font-weight:600;color:var(--ink-2);border-left:2px solid transparent;transition:background .2s,color .2s;text-align:left;width:100%}
+.acct-nav a:hover,.acct-nav__out:hover{background:var(--bg)}
+.acct-nav a.on{background:var(--bg);color:var(--ink);border-left-color:var(--ink)}
+.acct-nav__out{margin-top:6px;border-top:1px solid var(--line);color:var(--muted)}
+.acct-main{min-width:0}
+.acct-main .btn,.auth-card .btn{white-space:normal;text-align:center;max-width:100%;line-height:1.25;min-height:48px;padding-top:10px;padding-bottom:10px}
+.acct-main .btns-row .btn{flex:1 1 200px}
+.acct-h{margin:0 0 18px;font-family:var(--f-display);font-weight:900;text-transform:uppercase;letter-spacing:-.02em;font-size:clamp(22px,2.6vw,30px)}
+.acct-section-h{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin:26px 0 14px}
+.acct-section-h h3{margin:0;font-family:var(--f-display);font-size:12px;letter-spacing:.2em;text-transform:uppercase}
+.acct-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.acct-card{display:grid;gap:6px;align-content:start;background:#fff;border:1px solid var(--line);padding:20px;transition:border-color .2s,transform .2s}
+.acct-card:hover{border-color:var(--ink);transform:translateY(-2px)}
+.acct-card b{font-family:var(--f-display);font-size:13px;letter-spacing:.14em;text-transform:uppercase;margin-top:6px}
+.acct-card span{font-size:14.5px;overflow-wrap:anywhere}
+.acct-card small{font-size:12.5px;color:var(--muted)}
+.acct-note{display:flex;gap:10px;align-items:flex-start;background:#fff8e6;border:1px solid #f0d9a0;padding:12px 14px;font-size:13.5px;margin-bottom:14px}
+.acct-empty{background:#fff;border:1px solid var(--line);padding:clamp(28px,5vw,48px) 20px;text-align:center;display:grid;justify-items:center;gap:6px}
+.acct-empty h3{margin:8px 0 0;font-family:var(--f-display);font-weight:900;text-transform:uppercase;font-size:clamp(20px,2.4vw,26px)}
+.acct-empty p{color:var(--muted);margin:0 0 12px;max-width:42ch;font-size:14px}
+.acct-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+.acct-main .panel{margin-bottom:14px}
+.panel-h{margin:0 0 14px;font-family:var(--f-display);font-size:12px;letter-spacing:.2em;text-transform:uppercase}
+.order-card summary{grid-template-columns:minmax(0,1fr) auto;align-items:center}
+.order-card__main{display:grid;gap:3px;min-width:0}
+.order-card__prods{display:flex;align-items:center;gap:6px;grid-column:1/-1}
+.order-card__prods img{width:36px;height:45px;object-fit:cover;background:var(--tile)}
+.order-card__prods em{font-style:normal;font-size:12.5px;color:var(--muted);margin-left:4px}
+.addr-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.addr{background:#fff;border:1px solid var(--line);padding:16px;display:grid;gap:4px;font-size:14px;align-content:start}
+.addr.is-default{border-color:var(--ink)}
+.addr header{display:flex;justify-content:space-between;gap:8px;align-items:center;margin-bottom:4px}
+.addr header b{font-family:var(--f-display);letter-spacing:.12em;text-transform:uppercase;font-size:12px}
+.addr p{margin:0;overflow-wrap:anywhere}
+.addr footer{display:flex;gap:14px;flex-wrap:wrap;margin-top:10px}
+.addr-form{margin-bottom:16px}
+.addr-pick{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,220px),1fr));gap:10px;margin:0 0 20px}
+.addr-pick label{display:grid;grid-template-columns:auto minmax(0,1fr);gap:10px;align-items:start;border:1px solid #d6d3cd;background:#fff;padding:12px;cursor:pointer;font-size:13.5px}
+.addr-pick label:has(input:checked){border-color:var(--ink);box-shadow:0 0 0 1px var(--ink)}
+.addr-pick input{margin-top:3px;accent-color:var(--ink)}
+.addr-pick small{display:block;color:var(--muted)}
+@media (max-width:960px){
+  .acct{grid-template-columns:minmax(0,1fr)}
+  .acct-nav{position:static;display:flex;overflow-x:auto;scrollbar-width:none;padding:6px;gap:4px;margin:0 calc(var(--gutter) * -1);border-left:0;border-right:0}
+  .acct-nav::-webkit-scrollbar{display:none}
+  .acct-nav a,.acct-nav__out{flex:none;width:auto;border-left:0;border-bottom:2px solid transparent;padding:10px 12px;white-space:nowrap;font-size:13px;min-height:44px}
+  .acct-nav a.on{border-bottom-color:var(--ink)}
+  .acct-nav__out{margin:0;border-top:0}
+  .acct-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+}
+@media (max-width:560px){
+  .acct-cards,.addr-grid{grid-template-columns:minmax(0,1fr)}
+  .acct-head{gap:14px}.acct-avatar{width:52px;height:52px}
+  .acct-since{width:100%}
+}
+
+/* Admin: barra superior, campana y notificaciones */
+.adm__top{display:flex;justify-content:flex-end;align-items:center;gap:16px;margin:-6px 0 6px}
+.adm__top .live{position:static}
+.bell-wrap{position:relative}
+.bell{position:relative;width:44px;height:44px;display:grid;place-items:center;border:1px solid var(--line);background:#fff;border-radius:50%;transition:border-color .2s}
+.bell:hover,.bell[aria-expanded="true"]{border-color:var(--ink)}
+.bell em{position:absolute;top:-4px;right:-4px;min-width:20px;height:20px;padding:0 5px;border-radius:10px;background:#b3261e;color:#fff;font-style:normal;font-size:10.5px;font-weight:700;display:grid;place-items:center}
+.notif-pop{position:absolute;right:0;top:calc(100% + 8px);width:min(380px,calc(100vw - 32px));background:#fff;border:1px solid var(--line);box-shadow:0 18px 40px rgba(0,0,0,.14);z-index:30}
+.notif-pop header,.notif-pop footer{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid var(--line);font-size:13px}
+.notif-pop footer{border-bottom:0;border-top:1px solid var(--line);justify-content:center}
+.notif-pop header b{font-family:var(--f-display);letter-spacing:.16em;text-transform:uppercase;font-size:11.5px}
+.notif-pop__list{max-height:min(60vh,440px);overflow:auto}
+.notif-empty{padding:18px 14px;margin:0;font-size:13px}
+.notif{display:grid;grid-template-columns:36px minmax(0,1fr) auto;gap:12px;padding:12px 14px;border-bottom:1px solid var(--line);position:relative;transition:background .2s}
+.notif:hover{background:#faf9f7}
+.notif.is-unread{background:#fbfaf6}
+.notif.is-unread::before{content:"";position:absolute;left:5px;top:50%;width:6px;height:6px;border-radius:50%;background:#1d4ed8;transform:translateY(-50%)}
+.notif__ic{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:var(--bg);color:var(--ink);font-style:normal}
+.notif__ic.cat-pedidos{background:#e8efff;color:#1d4ed8}.notif__ic.cat-inventario{background:#fff4e0;color:#b45309}
+.notif__ic.cat-ventas{background:#e7f5ec;color:#1f6b3a}.notif__ic.cat-clientes{background:#f1ebff;color:#6d28d9}
+.notif__txt{display:grid;gap:2px;min-width:0;font-size:13.5px}
+.notif__txt b{font-weight:700}
+.notif__txt small{color:var(--ink-2);font-size:12.5px;overflow-wrap:anywhere}
+.notif__txt time{font-size:11px;color:var(--muted)}
+.notif__act{display:grid;gap:4px;align-content:center;justify-items:end}
+.notif-list{background:#fff;border:1px solid var(--line)}
+.notif-list .notif:last-child{border-bottom:0}
+.tab-count{font-style:normal;font-size:10px;background:var(--ink);color:#fff;border-radius:9px;padding:1px 6px;margin-left:4px;letter-spacing:0}
+.adm__side a em[hidden]{display:none}
+.bell em[hidden],.notif-pop[hidden]{display:none}
+
+/* Admin: imágenes más grandes y claras */
+table.t img{width:56px;height:70px;max-width:none;object-fit:cover;object-position:center;background:var(--tile);display:block}
+table.t td:has(> img){width:1%;min-width:66px}
+#ptable img{width:68px;height:85px}
+#ptable td:has(> img){min-width:78px}
+.thumbs-row{display:inline-flex;gap:4px;vertical-align:middle;margin-right:6px}
+.thumbs-row img{width:32px!important;height:40px!important}
+
+/* Inventario en tarjetas */
+.legend{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;font-size:12px;color:var(--muted);margin:0 0 12px}
+.inv-list{display:grid;gap:10px}
+.inv-card{display:grid;grid-template-columns:88px minmax(0,1fr);gap:16px;background:#fff;border:1px solid var(--line);padding:12px}
+.inv-card__img{width:88px;aspect-ratio:4/5;background:var(--tile);overflow:hidden}
+.inv-card__img img{width:100%;height:100%;object-fit:cover}
+.inv-card__body{display:grid;gap:10px;min-width:0}
+.inv-card__head{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.inv-card__head>div:first-child{display:grid;gap:3px;min-width:0}
+.inv-card__meta{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:12.5px}
+.inv-card__grid{display:grid;gap:6px}
+.inv-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.inv-color{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;min-width:92px;font-weight:600}
+.inv-color i{width:12px;height:12px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(0,0,0,.2)}
+.inv-sizes{display:flex;gap:6px;flex-wrap:wrap}
+.inv-chip{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);padding:4px 8px;font-size:12px;font-weight:600;background:#fff;white-space:nowrap}
+.inv-chip b{font-family:var(--f-display);min-width:14px;text-align:right}
+.inv-chip.st-normal b{color:var(--ok)}.inv-chip.st-bajo{border-color:#f0d9a0;background:#fff8e6}.inv-chip.st-bajo b{color:#b45309}
+.inv-chip.st-agotado{border-color:#f3c7c3;background:#fdf1f0;color:var(--err)}.inv-chip.st-sin_registrar b{color:var(--muted)}
+.inv-card__act{display:flex;justify-content:flex-end}
+@media (max-width:560px){.inv-card{grid-template-columns:64px minmax(0,1fr);gap:12px}.inv-card__img{width:64px}.inv-card__act .btn{width:100%}}
+
+/* Modal de movimiento de inventario */
+.entry-head{display:flex;gap:12px;align-items:center;margin-bottom:14px}
+.entry-head img{width:56px;height:70px;object-fit:cover;background:var(--tile)}
+.entry-head div{display:grid;gap:2px}
+.entry-cap{margin:4px 0 8px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:700}
+.entry-colors{display:flex;flex-wrap:wrap;gap:8px}
+.entry-color{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);padding:8px 12px;font-size:13px;cursor:pointer;background:#fff;min-height:40px}
+.entry-color i{width:14px;height:14px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(0,0,0,.2)}
+.entry-color{position:relative}
+.entry-color input{position:absolute;opacity:0;pointer-events:none;width:1px;height:1px;left:0;top:0;margin:0}
+.modal__box{overflow-x:hidden}
+.entry-color:has(input:checked),.entry-color.on{border-color:var(--ink);box-shadow:0 0 0 1px var(--ink)}
+.entry-sizes{display:grid;grid-template-columns:repeat(auto-fill,minmax(118px,1fr));gap:8px}
+.entry-size{display:grid;gap:4px;border:1px solid var(--line);background:#fff;padding:10px}
+.entry-size span{font-family:var(--f-display);font-weight:800;font-size:15px}
+.entry-size small{font-size:11px;color:var(--muted)}
+.entry-size input{height:40px;border:1px solid #d6d3cd;padding:0 10px;font-size:15px;width:100%;min-width:0}
+.entry-size--new{grid-column:1/-1;grid-template-columns:auto minmax(0,1fr) 90px;align-items:center}
+.entry-total{font-family:var(--f-display);font-weight:700;font-size:13px;letter-spacing:.06em;padding:10px 12px;background:var(--bg);border:1px solid var(--line)}
+.pick-list{display:grid;gap:6px;margin-top:8px}
+.pick{display:grid;grid-template-columns:44px minmax(0,1fr);gap:10px;align-items:center;text-align:left;border:1px solid var(--line);background:#fff;padding:8px;transition:border-color .2s}
+.pick:hover{border-color:var(--ink)}
+.pick img{width:44px;height:55px;object-fit:cover;background:var(--tile)}
+.pick span{display:grid;gap:2px;min-width:0}
+.pick small{color:var(--muted);font-size:12px}
+.pick>svg{justify-self:center}
+
+/* Punto de venta */
+.pos{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:16px;align-items:start}
+.pos__right{position:sticky;top:12px;display:grid}
+.pos-search{width:100%;height:48px;border:1px solid #d6d3cd;padding:0 14px;font-size:15px;background:#fff}
+.pos-results{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,210px),1fr));gap:8px;margin-top:10px}
+.pos-prod{display:grid;grid-template-columns:52px minmax(0,1fr);gap:10px;align-items:center;text-align:left;border:1px solid var(--line);background:#fff;padding:8px;transition:border-color .2s}
+.pos-prod:hover,.pos-prod.on{border-color:var(--ink)}
+.pos-prod img{width:52px;height:65px;object-fit:cover;background:var(--tile)}
+.pos-prod span{display:grid;gap:2px;min-width:0;font-size:13px}
+.pos-prod b{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pos-prod small{font-size:11.5px;color:var(--muted)}
+.pos-pick{margin-top:14px;border:1px solid var(--ink);padding:14px;background:#fff;animation:viewIn .3s var(--ease-out)}
+.pos-pick__head{display:grid;grid-template-columns:56px minmax(0,1fr) auto;gap:12px;align-items:center;margin-bottom:6px}
+.pos-pick__head img{width:56px;height:70px;object-fit:cover;background:var(--tile)}
+.pos-pick__head div{display:grid;gap:2px;min-width:0}
+.pos-sizes{display:grid;grid-template-columns:repeat(auto-fill,minmax(76px,1fr));gap:6px}
+.pos-sizes .size.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.pos-lines{display:grid;gap:8px}
+.pos-line{display:grid;grid-template-columns:48px repeat(3,minmax(0,1fr)) auto;grid-template-areas:"img info info info del" "img q p d sub";gap:8px 10px;align-items:end;border-bottom:1px solid var(--line);padding-bottom:10px}
+.pos-line>img,.pos-line>span:first-child{grid-area:img;align-self:start}.pos-line__info{grid-area:info;align-self:start}.pos-line [data-ldel]{grid-area:del;align-self:start;justify-self:end}
+.pos-line__f:nth-of-type(1){grid-area:q}.pos-line__f:nth-of-type(2){grid-area:p}.pos-line__f:nth-of-type(3){grid-area:d}.pos-line__sub{grid-area:sub;align-self:center}
+@media (min-width:1500px){.pos-line{grid-template-columns:48px minmax(0,1fr) 72px 110px 96px auto auto;grid-template-areas:"img info q p d sub del";align-items:center}.pos-line [data-ldel]{align-self:center}}
+.pos-line img{width:48px;height:60px;object-fit:cover;background:var(--tile)}
+.pos-line__info{display:grid;gap:2px;min-width:0;font-size:13px}
+.pos-line__info small{color:var(--muted);font-size:11.5px}
+.pos-line__f{display:grid;gap:2px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--muted)}
+.pos-line__f input{height:36px;border:1px solid #d6d3cd;padding:0 8px;font-size:14px;width:100%;min-width:0;color:var(--ink);font-weight:500;letter-spacing:0}
+.pos-line__sub{font-family:var(--f-display);font-size:14px;text-align:right;white-space:nowrap}
+.pos-selected{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:10px;align-items:center;border:1px solid var(--ink);padding:10px;margin-top:10px;background:#fff}
+.pos-selected span{display:grid;min-width:0}.pos-selected small{color:var(--muted);font-size:12px}
+#posCQ{width:100%;height:44px;border:1px solid #d6d3cd;padding:0 12px;font-size:14px;background:#fff}
+.pos-total .sum--total{font-size:20px}
+.nit-row{display:grid;grid-template-columns:minmax(0,1fr) auto 56px;gap:6px;align-items:center}
+.checklist{list-style:none;margin:0;padding:0;display:grid;gap:8px;font-size:13.5px}
+.checklist li{display:grid;grid-template-columns:22px minmax(0,1fr);gap:8px;align-items:center;color:var(--muted)}
+.checklist i{width:20px;height:20px;border:1px solid #cfccc6;display:grid;place-items:center;font-style:normal;font-size:12px;border-radius:50%}
+.checklist li.ok{color:var(--ink)}.checklist li.ok i{background:var(--ok);border-color:var(--ok);color:#fff}
+@media (max-width:1180px){.pos{grid-template-columns:minmax(0,1fr)}.pos__right{position:static}}
+@media (max-width:720px){
+  .pos-line{grid-template-columns:repeat(3,minmax(0,1fr));grid-template-areas:"info info del" "q p d" "sub sub sub"}
+  .pos-line>img,.pos-line>span:first-child{display:none}
+  .adm__top{margin-top:0}
+}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
@@ -1102,7 +1322,12 @@ const DEFAULT_SETTINGS = {
   },
   pedidos: { prefijo: "WES-", digitos: 4, costoEnvio: null,
              textoEnvio: "El costo y tiempo de envío se coordinan contigo por WhatsApp al confirmar el pedido.", politicaCambios: "" },
-  inventario: { umbralStockBajo: 3 }
+  inventario: { umbralStockBajo: 3 },
+  /* Facturación: vacío hasta que el negocio lo configure en Admin → Facturación (no se inventan datos tributarios) */
+  facturacion: { razonSocial: "", nombreComercial: "WESNOCK", nit: "", dv: "", direccion: "", ciudad: "", telefono: "", correo: "", logo: "",
+    regimen: "", responsabilidades: "", prefijoInterno: "VF-", prefijoDian: "", numeracionDesde: null, numeracionHasta: null,
+    resolucionNumero: "", resolucionFecha: "", resolucionVigenciaHasta: "", proveedor: { nombre: "", ambiente: "pruebas", estado: "no_configurado", notas: "" },
+    estadoIntegracion: "no_integrada", ivaTarifa: null, preciosIncluyenIva: true, notaLegal: "", textoPie: "Gracias por tu compra.", enviarCorreoAlVender: true }
 };
 
 /* Métodos de pago que soporta la arquitectura. integrado:false = oculto al
@@ -1132,7 +1357,7 @@ const CATALOG_SEED_URL = "catalogo/catalogo.json";   // catálogo original del Z
 /* =========================================================================
    3. DATOS — Supabase
    ========================================================================= */
-const Store = { ready: false, error: null, settings: structuredClone(DEFAULT_SETTINGS), categories: [], products: [], user: null, profile: null, favs: new Set() };
+const Store = { addresses: [], ready: false, error: null, settings: structuredClone(DEFAULT_SETTINGS), categories: [], products: [], user: null, profile: null, favs: new Set() };
 
 const ERR = {
   NO_AUTORIZADO: "No tienes permisos para esta acción.",
@@ -1150,7 +1375,13 @@ const ERR = {
   STOCK_NEGATIVO: "El stock no puede ser negativo.",
   NOMBRE_REQUERIDO: "El nombre es obligatorio.",
   VARIANTES_REQUERIDAS: "El producto necesita al menos una variante.",
-  TIPO_INVALIDO: "Tipo de movimiento no válido."
+  TIPO_INVALIDO: "Tipo de movimiento no válido.",
+  SIN_CANTIDADES: "Escribe al menos una cantidad.",
+  TALLA_REQUERIDA: "Escribe la talla.",
+  PRODUCTO_NO_EXISTE: "El producto no existe.",
+  VENTA_NO_EXISTE: "La venta no existe.",
+  MOTIVO_REQUERIDO: "Escribe el motivo.",
+  FORMA_PAGO_INVALIDA: "Forma de pago no válida."
 };
 function friendly(e) {
   const m = String(e?.message || e || "");
@@ -1158,6 +1389,9 @@ function friendly(e) {
   if (code === "STOCK_INSUFICIENTE") { const [what, left] = rest.split("|"); return `Stock insuficiente: ${what}. ${Number(left) > 0 ? "Disponibles: " + left + "." : "Está agotado."}`; }
   if (code === "PRODUCTO_NO_DISPONIBLE") return `${rest} ya no está disponible.`;
   if (code === "PRECIO_NO_DISPONIBLE") return `${rest} aún no tiene precio. Consúltalo por WhatsApp.`;
+  if (code === "PRECIO_REQUERIDO") return `Escribe el precio de venta de ${rest}.`;
+  if (code === "DESCUENTO_INVALIDO") return rest === "venta" ? "El descuento general supera el valor de la venta." : `El descuento de ${rest} no es válido.`;
+  if (code === "STOCK_NEGATIVO" && rest) { const [what, left] = rest.split("|"); return `No se puede dejar stock negativo: ${what} (hay ${left}).`; }
   if (ERR[code]) return ERR[code];
   if (/Invalid login credentials/i.test(m)) return "Correo o contraseña incorrectos.";
   if (/Email not confirmed/i.test(m)) return "Debes confirmar tu correo antes de iniciar sesión. Revisa tu bandeja de entrada.";
@@ -1225,7 +1459,7 @@ const Api = {
     Store.settings = s;
   },
   async saveSettings(s) {
-    const rows = ["tienda", "whatsapp", "catalogo", "pagos", "pedidos", "inventario"].map(key => ({ key, value: s[key], updated_at: new Date().toISOString() }));
+    const rows = ["tienda", "whatsapp", "catalogo", "pagos", "pedidos", "inventario", "facturacion"].map(key => ({ key, value: s[key], updated_at: new Date().toISOString() }));
     const { error } = await sb.from("store_settings").upsert(rows);
     if (error) throw error;
     Store.settings = s;
@@ -1494,7 +1728,7 @@ function confirmTyped({ title, message, word, button = "Eliminar", extra = "" })
     const inp = $("#cfWord"), yes = $("#cfYes");
     inp.oninput = () => { yes.disabled = inp.value.trim() !== word; };
     $("#cfNo").onclick = () => { closeModal(); resolve(null); };
-    yes.onclick = () => { const opts = Object.fromEntries($$("#modalBody input[type=checkbox]").map(c => [c.name, c.checked])); closeModal(); resolve(opts); };
+    yes.onclick = () => { const opts = Object.fromEntries($$("#modalBody input:not(#cfWord)").map(c => [c.name || c.id, c.type === "checkbox" ? c.checked : c.value.trim()])); closeModal(); resolve(opts); };
     const stop = new MutationObserver(() => { if (!$("#modal").classList.contains("open")) { stop.disconnect(); resolve(null); } });
     stop.observe($("#modal"), { attributes: true, attributeFilter: ["class"] });
   });
@@ -1938,15 +2172,17 @@ function renderCheckoutStep() {
       <div class="co-actions"><a href="#/tienda" class="btn btn--ghost">Seguir comprando</a><button class="btn" data-co-next>Continuar con el envío</button></div>
       <button type="button" class="clear-cart" style="margin:18px 0 0" data-clear-cart>Vaciar carrito</button></div>${summary}</div>`;
   } else if (checkout.step === 2) {
-    const u = Store.profile;
-    const base = checkout.data || (u ? { nombre: u.nombre, telefono: u.telefono, ciudad: u.ciudad, direccion: u.direccion, barrio: u.barrio, info_adicional: u.info_adicional, email: Store.user?.email } : {});
+    const u = Store.profile; const addrs = Store.user ? (Store.addresses || []) : []; const pa = Addresses.preferred();
+    const fromAddr = a => ({ nombre: a.destinatario, telefono: a.telefono, ciudad: a.ciudad, direccion: a.direccion, barrio: a.barrio, info_adicional: a.info_adicional });
+    const base = checkout.data || (Store.user ? (pa ? fromAddr(pa) : { nombre: displayName(), telefono: u?.telefono, ciudad: u?.ciudad, direccion: u?.direccion, barrio: u?.barrio, info_adicional: u?.info_adicional }) : {});
     box.innerHTML = `<div class="co"><form id="shipForm" novalidate>
-      ${Store.user ? `<p class="page-sub" style="margin:0 0 20px">Comprando como <b>${esc(u?.nombre || Store.user.email)}</b>.</p>` : `<p class="page-sub" style="margin:0 0 20px">Puedes comprar como invitado. ¿Tienes cuenta? <a href="#/cuenta" class="link-btn">Inicia sesión</a> para guardar el pedido en tu historial.</p>`}
+      ${Store.user ? `<p class="page-sub" style="margin:0 0 20px">Comprando como <b>${esc(displayName() || Store.user.email)}</b>.</p>` : `<p class="page-sub" style="margin:0 0 20px">Puedes comprar como invitado. ¿Tienes cuenta? <a href="#/cuenta?next=checkout" class="link-btn">Inicia sesión</a> para guardar el pedido en tu historial.</p>`}
+      ${addrs.length ? `<p class="entry-cap">Tus direcciones</p><div class="addr-pick" role="radiogroup" aria-label="Direcciones guardadas">${addrs.map(a => `<label><input type="radio" name="addrUse" value="${a.id}" ${!checkout.data && pa && pa.id === a.id ? "checked" : ""}><span><b>${esc(a.etiqueta || a.destinatario)}</b><small>${esc(a.direccion)}, ${esc(a.barrio)}</small><small>${esc(a.ciudad)} · ${esc(a.telefono)}</small></span></label>`).join("")}<label><input type="radio" name="addrUse" value="" ${checkout.data || !pa ? "checked" : ""}><span><b>Otra dirección</b><small>Escríbela abajo</small></span></label></div>` : ""}
       <fieldset><legend><h2><span>2</span>Datos de envío</h2></legend><div class="fields">
         ${SHIP_FIELDS.filter(f => !(Store.user && f.id === "email")).map(f => `<div class="field ${f.full ? "full" : ""}"><label for="f_${f.id}">${f.label}${f.req ? " *" : ""}</label>
           ${f.area ? `<textarea id="f_${f.id}" name="${f.id}">${esc(base[f.id] || "")}</textarea>` : `<input id="f_${f.id}" name="${f.id}" type="${f.type || "text"}" ${f.auto ? `autocomplete="${f.auto}"` : ""} ${f.req ? "required" : ""} value="${esc(base[f.id] || "")}" ${f.type === "tel" ? 'inputmode="tel"' : ""} aria-describedby="e_${f.id}${f.hint ? " h_" + f.id : ""}">`}
           ${f.hint ? `<span class="hint" id="h_${f.id}">${f.hint}</span>` : ""}<span class="err" id="e_${f.id}">${f.id === "telefono" ? "Ingresa un número válido (mínimo 7 dígitos)." : f.id === "email" ? "Correo no válido." : "Campo obligatorio."}</span></div>`).join("")}
-      </div>${Store.user ? `<label class="check-row"><input type="checkbox" name="guardar" checked> Guardar estos datos de envío en mi cuenta</label>` : ""}</fieldset>
+      </div>${Store.user ? `<label class="check-row"><input type="checkbox" name="guardar" ${addrs.length ? "" : "checked"}> Guardar esta dirección en mi cuenta</label>` : ""}</fieldset>
       <div class="co-actions"><button type="button" class="btn btn--ghost" data-co-back>Volver</button><button class="btn" type="submit">Continuar al pago</button></div>
     </form>${summary}</div>`;
     const form = $("#shipForm");
@@ -1956,15 +2192,20 @@ function renderCheckoutStep() {
       if (el.name === "email" && el.value.trim()) ok = /^\S+@\S+\.\S+$/.test(el.value.trim());
       el.closest(".field").classList.toggle("invalid", !ok); el.setAttribute("aria-invalid", !ok); return ok;
     };
-    $$("input", form).forEach(el => { if (el.type === "checkbox") return; el.addEventListener("blur", () => validate(el)); el.addEventListener("input", () => el.closest(".field").classList.contains("invalid") && validate(el)); });
+    $$("input", form).forEach(el => { if (el.type === "checkbox" || el.type === "radio") return; el.addEventListener("blur", () => validate(el)); el.addEventListener("input", () => el.closest(".field").classList.contains("invalid") && validate(el)); });
+    form.addEventListener("change", e => { if (e.target.name !== "addrUse") return; const a = addrs.find(x => x.id === e.target.value); const d = a ? fromAddr(a) : {};
+      SHIP_FIELDS.forEach(f => { const el = $("#f_" + f.id); if (el && f.id !== "email") { el.value = d[f.id] || (f.id === "nombre" ? displayName() : ""); el.closest(".field").classList.remove("invalid"); } });
+      const g = $("[name=guardar]", form); if (g) g.checked = !a; });
     form.onsubmit = async e => {
       e.preventDefault();
-      const bad = $$("input:not([type=checkbox])", form).filter(el => !validate(el));
+      const bad = $$("input:not([type=checkbox]):not([type=radio])", form).filter(el => !validate(el));
       if (bad.length) { bad[0].focus(); toast("Revisa los campos marcados."); return; }
       const fd = Object.fromEntries(new FormData(form));
       checkout.data = Object.fromEntries(SHIP_FIELDS.map(f => [f.id, String(fd[f.id] ?? "").trim()]));
       if (Store.user) checkout.data.email = Store.user.email;
-      if (Store.user && fd.guardar) { const { nombre, telefono, ciudad, direccion, barrio, info_adicional } = checkout.data; saveProfile({ nombre, telefono, ciudad, direccion, barrio, info_adicional }).catch(() => {}); }
+      if (Store.user && fd.guardar) { const d = checkout.data;
+        Addresses.save({ destinatario: d.nombre, telefono: d.telefono, ciudad: d.ciudad, direccion: d.direccion, barrio: d.barrio, info_adicional: d.info_adicional, etiqueta: "", predeterminada: !(Store.addresses || []).length }).catch(() => {}); }
+      if (Store.user && !displayName() && checkout.data.nombre) saveProfile({ nombre: checkout.data.nombre, telefono: Store.profile?.telefono || checkout.data.telefono }).catch(() => {});
       goStep(3);
     };
   } else if (checkout.step === 3) {
@@ -2035,116 +2276,296 @@ async function viewOrderDone(numero) {
       ${o.items_sin_precio ? `<p class="cart-note">${o.items_sin_precio} producto(s) con precio a confirmar por WhatsApp.</p>` : ""}
       <p class="muted-text" style="margin:12px 0 0">Pago: ${esc(PaymentGateway.label(o.metodo_pago))} · Entrega: ${esc(o.cliente.direccion)}, ${esc(o.cliente.barrio)}, ${esc(o.cliente.ciudad)}</p>
     </div>
-    <div class="btns">${Store.user ? '<a href="#/cuenta" class="btn btn--ghost" data-acc="pedidos">Ver mis pedidos</a>' : ""}<a href="#/tienda" class="btn btn--ghost">Seguir comprando</a></div>
+    <div class="btns">${Store.user ? '<a href="#/cuenta/pedidos" class="btn btn--ghost">Ver mis pedidos</a>' : ""}<a href="#/tienda" class="btn btn--ghost">Seguir comprando</a></div>
   </div></section>`;
 }
 
 /* =========================================================================
    CUENTA DE CLIENTE (Supabase Auth)
+   Rutas: #/cuenta (inicio de sesión o resumen) · #/cuenta/registro · #/cuenta/recuperar
+          #/cuenta/{pedidos|favoritos|datos|direcciones|seguridad|configuracion}
    ========================================================================= */
-let accountTab = "pedidos";
+const UI_ICON = {
+  resumen: '<path d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-5v-6h-4v6H5a1 1 0 0 1-1-1z"/>',
+  pedidos: '<path d="M5 8h14l-1 12H6L5 8Z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/>',
+  favoritos: '<path d="M12 20s-7.5-4.6-7.5-10.1A4.2 4.2 0 0 1 12 7.6a4.2 4.2 0 0 1 7.5 2.3C19.5 15.4 12 20 12 20Z"/>',
+  datos: '<circle cx="12" cy="8.5" r="3.5"/><path d="M5 20c.8-3.6 3.6-5.5 7-5.5s6.2 1.9 7 5.5"/>',
+  direcciones: '<path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11Z"/><circle cx="12" cy="10" r="2.3"/>',
+  seguridad: '<rect x="5" y="10.5" width="14" height="10" rx="1.5"/><path d="M8.5 10.5V7.5a3.5 3.5 0 0 1 7 0v3"/>',
+  configuracion: '<path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/>',
+  salir: '<path d="M14 5h4a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1h-4"/><path d="M10 16l-4-4 4-4M6 12h9"/>',
+  bell: '<path d="M6 16v-5a6 6 0 1 1 12 0v5l1.5 2h-15z"/><path d="M10 20.5a2 2 0 0 0 4 0"/>',
+  eye: '<path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12Z"/><circle cx="12" cy="12" r="2.8"/>',
+  box: '<path d="M3.5 7.5 12 3l8.5 4.5v9L12 21l-8.5-4.5z"/><path d="M3.5 7.5 12 12l8.5-4.5M12 12v9"/>',
+  cart: '<path d="M4 5h2l1.6 9.2a1 1 0 0 0 1 .8h8.7a1 1 0 0 0 1-.8L20 8H7"/><circle cx="10" cy="19" r="1.3"/><circle cx="17" cy="19" r="1.3"/>',
+  tag: '<path d="M3.5 12.5V4.5h8l9 9-8 8z"/><circle cx="8" cy="9" r="1.4"/>',
+  info: '<circle cx="12" cy="12" r="8.5"/><path d="M12 11v5M12 8h.01"/>',
+  plus: '<path d="M12 5v14M5 12h14"/>'
+};
+const uiIcon = (k, size = 20) => `<svg viewBox="0 0 24 24" width="${size}" height="${size}" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${UI_ICON[k] || ""}</svg>`;
+
+const ACC_SECTIONS = [["resumen", "Mi cuenta"], ["pedidos", "Mis pedidos"], ["favoritos", "Favoritos"], ["datos", "Datos personales"],
+  ["direcciones", "Direcciones"], ["seguridad", "Seguridad"], ["configuracion", "Configuración"]];
+let accountTab = "resumen";
+let addrEditing = null;   // id de la dirección en edición, "new" o null
+
+/* Nombre para mostrar: nunca usernames tipo "@usuario" ni el correo pegado a un saludo */
+function displayName() {
+  return String(Store.profile?.nombre || Store.user?.user_metadata?.nombre || "").replace(/^@+/, "").replace(/\s+/g, " ").trim();
+}
 async function saveProfile(patch) {
   const { error } = await sb.from("profiles").update(patch).eq("id", Store.user.id);
   if (error) throw error; Store.profile = { ...Store.profile, ...patch };
 }
-function authForms() {
-  return `<div class="acc-grid">
-    <div class="panel"><h2>Iniciar sesión</h2><p>Accede con tu correo y contraseña.</p>
-      <form id="loginForm" novalidate>
-        <div class="field"><label for="l_email">Correo electrónico</label><input id="l_email" name="email" type="email" autocomplete="email" required></div>
-        <div class="field"><label for="l_pw">Contraseña</label><input id="l_pw" name="password" type="password" autocomplete="current-password" required></div>
-        <p class="form-msg" id="loginMsg" role="alert"></p>
-        <button class="btn" type="submit">Iniciar sesión</button>
-        <button type="button" class="link-btn" id="forgotBtn" style="justify-self:start">¿Olvidaste tu contraseña?</button>
-      </form></div>
-    <div class="panel"><h2>Crear cuenta</h2><p>Guarda tus datos de envío, tus favoritos y el historial de tus pedidos.</p>
-      <form id="regForm" novalidate>
-        <div class="field"><label for="r_name">Nombre completo</label><input id="r_name" name="nombre" autocomplete="name" required></div>
-        <div class="field"><label for="r_email">Correo electrónico</label><input id="r_email" name="email" type="email" autocomplete="email" required></div>
-        <div class="field"><label for="r_tel">Teléfono</label><input id="r_tel" name="telefono" type="tel" inputmode="tel" autocomplete="tel" required></div>
-        <div class="field"><label for="r_pw">Contraseña</label><input id="r_pw" name="password" type="password" autocomplete="new-password" minlength="8" required><span class="hint">Mínimo 8 caracteres.</span></div>
-        <p class="form-msg" id="regMsg" role="alert"></p>
-        <button class="btn" type="submit">Crear cuenta</button>
-      </form></div></div>`;
+const Addresses = {
+  async list() {
+    const { data, error } = await sb.from("addresses").select("*").order("predeterminada", { ascending: false }).order("created_at");
+    if (error) throw error; Store.addresses = data; return data;
+  },
+  async save(a) {
+    const row = { etiqueta: a.etiqueta || "", destinatario: a.destinatario, telefono: a.telefono || "", ciudad: a.ciudad, direccion: a.direccion,
+                  barrio: a.barrio || "", info_adicional: a.info_adicional || "", predeterminada: !!a.predeterminada };
+    const q = a.id ? sb.from("addresses").update(row).eq("id", a.id) : sb.from("addresses").insert({ ...row, user_id: Store.user.id });
+    const { error } = await q; if (error) throw error; return this.list();
+  },
+  async remove(id) { const { error } = await sb.from("addresses").delete().eq("id", id); if (error) throw error; return this.list(); },
+  async setDefault(id) { const { error } = await sb.from("addresses").update({ predeterminada: true }).eq("id", id); if (error) throw error; return this.list(); },
+  preferred() { return (Store.addresses || []).find(a => a.predeterminada) || (Store.addresses || [])[0] || null; }
+};
+
+/* ---------- Vistas sin sesión: dos pantallas independientes ---------- */
+function pwField(id, name, label, auto, extra = "") {
+  return `<div class="field"><label for="${id}">${label}</label><div class="pw"><input id="${id}" name="${name}" type="password" autocomplete="${auto}" required ${extra}>
+    <button type="button" class="pw__toggle" data-pw="${id}" aria-label="Mostrar contraseña" aria-pressed="false">${uiIcon("eye", 18)}</button></div></div>`;
 }
-async function viewAccount() {
-  if (!Store.user) return `<section class="page wrap">${crumbs([{ label: "Inicio", href: "#/" }, { label: "Cuenta" }])}
-    <h1 class="h-display page-title">Mi cuenta</h1><p class="page-sub">Inicia sesión o crea tu cuenta. También puedes comprar como invitado.</p>${authForms()}</section><div class="section"></div>`;
-  const u = Store.profile || {};
-  const tabs = [["perfil", "Mi perfil"], ["pedidos", "Mis pedidos"], ["favoritos", "Favoritos"], ["envio", "Datos de envío"], ["seguridad", "Seguridad"]];
-  let body = "";
-  if (accountTab === "pedidos") {
-    const orders = await Api.myOrders().catch(e => { toast(friendly(e)); return []; });
-    body = orders.length ? orders.map(o => `<details class="order-card"><summary><b>${esc(o.numero)}</b>${statusPill(o.estado)}<small>${fmtDate(o.created_at)} · ${o.items.reduce((a, i) => a + i.cantidad, 0)} producto(s) · ${esc(PaymentGateway.label(o.metodo_pago))}</small><b class="order-card__total">${money(o.total)}</b><span class="order-card__more">Ver detalles</span></summary>
-      <div class="body"><h4 class="mini-h">Estado del pedido</h4>${statusFlow(o)}
-        <div class="mini-lines">${o.items.map(i => `<div>${i.imagen ? img(Catalog.imageSm(i.imagen), "") : "<span></span>"}<span>${esc(i.nombre)}<small>Talla ${esc(i.talla)}${i.color ? " · " + esc(i.color) : ""} · ${i.cantidad} × ${i.precio_unitario == null ? "a confirmar" : money(i.precio_unitario)}</small></span><b>${i.subtotal == null ? "—" : money(i.subtotal)}</b></div>`).join("")}</div>
-        <p class="muted-text">Entrega: ${esc(o.cliente.direccion)}, ${esc(o.cliente.barrio)}, ${esc(o.cliente.ciudad)} · Envío: ${o.envio == null ? "a coordinar" : money(o.envio)}</p>
-        <div class="btns-row"><a class="link-btn" href="${esc(waLink(orderWhatsAppText(o)))}" target="_blank" rel="noopener">Reenviar pedido por WhatsApp</a><a class="link-btn" href="${esc(waLink(`Hola ${S().tienda.nombre}, quiero consultar el estado de mi pedido ${o.numero}.`))}" target="_blank" rel="noopener">Consultar estado</a></div></div></details>`).join("")
-      : `<div class="empty" style="text-align:left;padding:24px 0"><h3>Aún no tienes pedidos</h3><p>Cuando compres con tu sesión iniciada aparecerán aquí.</p><a href="#/tienda" class="btn">Ir a la tienda</a></div>`;
-  } else if (accountTab === "favoritos") {
-    const list = [...Store.favs].map(id => Catalog.byId(id)).filter(p => p && Catalog.isShown(p));
-    body = list.length ? `<div class="grid">${list.map(card).join("")}</div>` : `<div class="empty" style="text-align:left;padding:24px 0"><h3>Sin favoritos</h3><p>Toca el corazón en cualquier producto para guardarlo.</p></div>`;
-  } else if (accountTab === "perfil") {
-    body = `<div class="panel" style="max-width:720px"><form id="profForm" novalidate><div class="fg">
-      <div class="field full"><label for="p_nombre">Nombre completo</label><input id="p_nombre" name="nombre" value="${esc(u.nombre)}" required></div>
-      <div class="field"><label for="p_email">Correo</label><input id="p_email" value="${esc(Store.user.email)}" disabled></div>
-      <div class="field"><label for="p_tel">Teléfono</label><input id="p_tel" name="telefono" type="tel" value="${esc(u.telefono)}"></div>
-      <div class="field full"><span class="hint">Cliente desde ${u.created_at ? new Date(u.created_at).toLocaleDateString("es-CO") : "—"}</span></div>
-    </div><p class="form-msg" id="profMsg" role="status"></p><button class="btn" type="submit">Guardar cambios</button></form></div>`;
-  } else if (accountTab === "envio") {
-    body = `<div class="panel" style="max-width:720px"><form id="shipProfForm" novalidate><div class="fg">
-      <div class="field"><label for="s_ciudad">Ciudad</label><input id="s_ciudad" name="ciudad" value="${esc(u.ciudad)}"></div>
-      <div class="field"><label for="s_barrio">Barrio</label><input id="s_barrio" name="barrio" value="${esc(u.barrio)}"></div>
-      <div class="field full"><label for="s_dir">Dirección</label><input id="s_dir" name="direccion" value="${esc(u.direccion)}"></div>
-      <div class="field full"><label for="s_info">Información adicional para la entrega</label><textarea id="s_info" name="info_adicional">${esc(u.info_adicional)}</textarea></div>
-    </div><p class="form-msg" id="shipMsg" role="status"></p><button class="btn" type="submit">Guardar datos de envío</button></form></div>`;
-  } else {
-    body = `<div class="panel" style="max-width:520px"><form id="pwForm" novalidate>
-      <div class="field"><label for="pw_n">Nueva contraseña</label><input id="pw_n" name="nueva" type="password" autocomplete="new-password" minlength="8" required></div>
-      <div class="field"><label for="pw_n2">Repetir nueva contraseña</label><input id="pw_n2" name="nueva2" type="password" autocomplete="new-password" required></div>
-      <p class="form-msg" id="pwMsg" role="status"></p><button class="btn" type="submit">Actualizar contraseña</button></form></div>`;
+function viewLogin(next) {
+  return `<section class="page wrap auth-page"><div class="auth-card">
+    <span class="wordmark auth-mark">${esc(S().tienda.nombre)}</span>
+    <h1 class="auth-title">Iniciar sesión</h1>
+    <p class="auth-sub">Accede para ver tus pedidos, favoritos y datos de envío.</p>
+    <form id="loginForm" class="stack" novalidate data-next="${esc(next || "")}">
+      <div class="field"><label for="l_email">Correo electrónico</label><input id="l_email" name="email" type="email" autocomplete="email" inputmode="email" required></div>
+      ${pwField("l_pw", "password", "Contraseña", "current-password")}
+      <p class="form-msg" id="loginMsg" role="alert"></p>
+      <button class="btn btn--block" type="submit">Iniciar sesión</button>
+      <p class="auth-forgot">¿Olvidaste tu contraseña? <a href="#/cuenta/recuperar" class="link-btn">Recuperar contraseña</a></p>
+    </form>
+    <div class="auth-alt"><span>¿No tienes una cuenta?</span><a href="#/cuenta/registro${next ? "?next=" + encodeURIComponent(next) : ""}" class="btn btn--ghost btn--block">Crear cuenta</a></div>
+    <p class="auth-guest">También puedes <a href="#/tienda" class="link-btn">comprar como invitado</a>.</p>
+  </div></section>`;
+}
+function viewRegister(next) {
+  return `<section class="page wrap auth-page"><div class="auth-card" id="regCard">
+    <span class="wordmark auth-mark">${esc(S().tienda.nombre)}</span>
+    <h1 class="auth-title">Crear cuenta</h1>
+    <p class="auth-sub">Guarda tus direcciones, tus favoritos y el historial de tus pedidos.</p>
+    <form id="regForm" class="stack" novalidate data-next="${esc(next || "")}">
+      <div class="field"><label for="r_name">Nombre completo</label><input id="r_name" name="nombre" autocomplete="name" required></div>
+      <div class="field"><label for="r_email">Correo electrónico</label><input id="r_email" name="email" type="email" autocomplete="email" inputmode="email" required></div>
+      ${pwField("r_pw", "password", "Contraseña", "new-password", 'minlength="8"')}
+      ${pwField("r_pw2", "password2", "Confirmar contraseña", "new-password")}
+      <span class="hint">Mínimo 8 caracteres.</span>
+      <p class="form-msg" id="regMsg" role="alert"></p>
+      <button class="btn btn--block" type="submit">Crear cuenta</button>
+    </form>
+    <div class="auth-alt"><span>¿Ya tienes una cuenta?</span><a href="#/cuenta${next ? "?next=" + encodeURIComponent(next) : ""}" class="btn btn--ghost btn--block">Iniciar sesión</a></div>
+  </div></section>`;
+}
+function viewRecover() {
+  return `<section class="page wrap auth-page"><div class="auth-card">
+    <span class="wordmark auth-mark">${esc(S().tienda.nombre)}</span>
+    <h1 class="auth-title">Recuperar contraseña</h1>
+    <p class="auth-sub">Escribe el correo de tu cuenta y te enviaremos un enlace para crear una contraseña nueva.</p>
+    <form id="recoverForm" class="stack" novalidate>
+      <div class="field"><label for="rc_email">Correo electrónico</label><input id="rc_email" name="email" type="email" autocomplete="email" inputmode="email" required></div>
+      <p class="form-msg" id="recoverMsg" role="alert"></p>
+      <button class="btn btn--block" type="submit">Enviar enlace</button>
+    </form>
+    <div class="auth-alt"><a href="#/cuenta" class="link-btn">← Volver a iniciar sesión</a></div>
+  </div></section>`;
+}
+
+/* ---------- Panel del cliente ---------- */
+function orderCard(o) {
+  const items = o.items || [];
+  return `<details class="order-card"><summary>
+      <span class="order-card__main"><b>${esc(o.numero)}</b><small>${fmtDate(o.created_at)} · ${esc(PaymentGateway.label(o.metodo_pago))}</small></span>
+      ${statusPill(o.estado)}
+      <span class="order-card__prods">${items.slice(0, 4).map(i => i.imagen ? img(Catalog.imageSm(i.imagen), "") : "").join("")}<em>${items.reduce((a, i) => a + i.cantidad, 0)} producto(s)</em></span>
+      <b class="order-card__total">${money(o.total)}</b>
+      <span class="order-card__more">Ver detalles</span></summary>
+    <div class="body"><h4 class="mini-h">Estado del pedido</h4>${statusFlow(o)}
+      <div class="mini-lines">${items.map(i => `<div>${i.imagen ? img(Catalog.imageSm(i.imagen), "") : "<span></span>"}<span>${esc(i.nombre)}<small>Talla ${esc(i.talla)}${i.color ? " · " + esc(i.color) : ""} · ${i.cantidad} × ${i.precio_unitario == null ? "a confirmar" : money(i.precio_unitario)}</small></span><b>${i.subtotal == null ? "—" : money(i.subtotal)}</b></div>`).join("")}</div>
+      <p class="muted-text">Entrega: ${esc(o.cliente.direccion)}, ${esc(o.cliente.barrio)}, ${esc(o.cliente.ciudad)} · Envío: ${o.envio == null ? "a coordinar" : money(o.envio)}</p>
+      <div class="btns-row"><a class="link-btn" href="${esc(waLink(orderWhatsAppText(o)))}" target="_blank" rel="noopener">Reenviar pedido por WhatsApp</a><a class="link-btn" href="${esc(waLink(`Hola ${S().tienda.nombre}, quiero consultar el estado de mi pedido ${o.numero}.`))}" target="_blank" rel="noopener">Consultar estado</a></div></div></details>`;
+}
+function emptyState(icon, title, text, cta) {
+  return `<div class="acct-empty">${uiIcon(icon, 34)}<h3>${esc(title)}</h3><p>${esc(text)}</p>${cta || ""}</div>`;
+}
+function addressCard(a) {
+  return `<article class="addr ${a.predeterminada ? "is-default" : ""}">
+    <header><b>${esc(a.etiqueta || "Dirección")}</b>${a.predeterminada ? '<span class="tag dark">Predeterminada</span>' : ""}</header>
+    <p><b>${esc(a.destinatario)}</b>${a.telefono ? " · " + esc(a.telefono) : ""}</p>
+    <p>${esc(a.direccion)}${a.barrio ? ", barrio " + esc(a.barrio) : ""}</p><p>${esc(a.ciudad)}</p>
+    ${a.info_adicional ? `<p class="muted-text">${esc(a.info_adicional)}</p>` : ""}
+    <footer><button type="button" class="link-btn" data-addr-edit="${a.id}">Editar</button>
+      ${a.predeterminada ? "" : `<button type="button" class="link-btn" data-addr-default="${a.id}">Usar como predeterminada</button>`}
+      <button type="button" class="link-btn danger" data-addr-del="${a.id}">Eliminar</button></footer></article>`;
+}
+function addressForm(a) {
+  a = a || { destinatario: displayName(), telefono: Store.profile?.telefono || "" };
+  const f = (id, label, val, full, req, type = "text") => `<div class="field ${full ? "full" : ""}"><label for="ad_${id}">${label}${req ? " *" : ""}</label><input id="ad_${id}" name="${id}" type="${type}" value="${esc(val || "")}" ${req ? "required" : ""}></div>`;
+  return `<form id="addrForm" class="panel addr-form" novalidate data-id="${esc(a.id || "")}"><h3 class="panel-h">${a.id ? "Editar dirección" : "Nueva dirección"}</h3><div class="fg">
+      ${f("etiqueta", "Nombre de la dirección (Casa, Oficina…)", a.etiqueta, true)}
+      ${f("destinatario", "Nombre del destinatario", a.destinatario, false, true)}${f("telefono", "Teléfono", a.telefono, false, true, "tel")}
+      ${f("ciudad", "Ciudad", a.ciudad, false, true)}${f("barrio", "Barrio", a.barrio, false, true)}
+      ${f("direccion", "Dirección", a.direccion, true, true)}
+      <div class="field full"><label for="ad_info">Información adicional</label><textarea id="ad_info" name="info_adicional">${esc(a.info_adicional || "")}</textarea></div>
+    </div>
+    <label class="check-row"><input type="checkbox" name="predeterminada" ${a.predeterminada || !(Store.addresses || []).length ? "checked" : ""}> Usar como dirección predeterminada</label>
+    <p class="form-msg" id="addrMsg" role="alert"></p>
+    <div class="co-actions"><button type="button" class="btn btn--ghost" data-addr-cancel>Cancelar</button><button class="btn" type="submit">Guardar dirección</button></div></form>`;
+}
+
+async function viewAccount(r) {
+  const sub = r.param || "";
+  if (!Store.user) {
+    if (sub === "registro") return viewRegister(r.query.next);
+    if (sub === "recuperar") return viewRecover();
+    return viewLogin(r.query.next);
   }
-  return `<section class="page wrap">${crumbs([{ label: "Inicio", href: "#/" }, { label: "Cuenta" }])}
-    <h1 class="h-display page-title">Hola, ${esc((u.nombre || Store.user.email).split(" ")[0])}</h1>
-    <p class="page-sub">${esc(Store.user.email)} · <button type="button" class="link-btn" id="logoutBtn">Cerrar sesión</button></p>
-    <div class="tabs2" role="tablist">${tabs.map(([k, l]) => `<button role="tab" aria-selected="${accountTab === k}" data-acctab="${k}">${l}</button>`).join("")}</div>
-    ${body}</section><div class="section"></div>`;
+  const legacy = { tab: r.query.tab };
+  accountTab = ACC_SECTIONS.some(([k]) => k === sub) ? sub : (legacy.tab && ACC_SECTIONS.some(([k]) => k === legacy.tab) ? legacy.tab : "resumen");
+  const name = displayName(); const u = Store.profile || {};
+  let body = "";
+  const needOrders = accountTab === "resumen" || accountTab === "pedidos";
+  const orders = needOrders ? await Api.myOrders().catch(e => { toast(friendly(e)); return []; }) : [];
+  if (["resumen", "direcciones"].includes(accountTab)) await Addresses.list().catch(() => { Store.addresses = Store.addresses || []; });
+  const favList = [...Store.favs].map(id => Catalog.byId(id)).filter(p => p && Catalog.isShown(p));
+
+  if (accountTab === "resumen") {
+    const last = orders[0]; const addr = Addresses.preferred();
+    body = `<h2 class="acct-h">Mi cuenta</h2>
+      ${!name ? `<div class="acct-note">${uiIcon("info", 18)}<span>Completa tu nombre para personalizar tu cuenta y tus pedidos. <a class="link-btn" href="#/cuenta/datos">Completar datos</a></span></div>` : ""}
+      <div class="acct-cards">
+        <a class="acct-card" href="#/cuenta/pedidos">${uiIcon("pedidos", 24)}<b>Mis pedidos</b><span>${orders.length ? `${orders.length} pedido${orders.length === 1 ? "" : "s"}` : "Aún no tienes pedidos"}</span>${last ? `<small>Último: ${esc(last.numero)} · ${esc(ORDER_STATUS[last.estado] || last.estado)}</small>` : ""}</a>
+        <a class="acct-card" href="#/cuenta/favoritos">${uiIcon("favoritos", 24)}<b>Favoritos</b><span>${favList.length ? `${favList.length} guardado${favList.length === 1 ? "" : "s"}` : "Sin favoritos todavía"}</span></a>
+        <a class="acct-card" href="#/cuenta/datos">${uiIcon("datos", 24)}<b>Datos personales</b><span>${esc(name || "Sin nombre")}</span><small>${esc(u.telefono || "Agrega tu teléfono")}</small></a>
+        <a class="acct-card" href="#/cuenta/direcciones">${uiIcon("direcciones", 24)}<b>Direcciones</b><span>${addr ? esc(addr.direccion) : "Agrega una dirección"}</span>${addr ? `<small>${esc(addr.ciudad)}</small>` : ""}</a>
+      </div>
+      ${orders.length ? `<div class="acct-section-h"><h3>Pedidos recientes</h3><a class="link-u" href="#/cuenta/pedidos">Ver todos</a></div>${orders.slice(0, 2).map(orderCard).join("")}` : ""}`;
+  } else if (accountTab === "pedidos") {
+    body = `<h2 class="acct-h">Mis pedidos</h2>` + (orders.length ? orders.map(orderCard).join("")
+      : emptyState("pedidos", "Todavía no tienes pedidos", "Cuando compres con tu sesión iniciada, tus pedidos y su estado aparecerán aquí.", `<a href="#/tienda" class="btn">Ir a la tienda</a>`));
+  } else if (accountTab === "favoritos") {
+    body = `<h2 class="acct-h">Favoritos</h2>` + (favList.length ? `<div class="grid acct-grid">${favList.map(card).join("")}</div>`
+      : emptyState("favoritos", "Aún no tienes favoritos", "Toca el corazón en cualquier producto para guardarlo aquí.", `<a href="#/tienda" class="btn">Explorar la tienda</a>`));
+  } else if (accountTab === "datos") {
+    body = `<h2 class="acct-h">Datos personales</h2><form id="profForm" class="panel" novalidate><div class="fg">
+      <div class="field full"><label for="p_nombre">Nombre completo</label><input id="p_nombre" name="nombre" value="${esc(name)}" autocomplete="name" required></div>
+      <div class="field"><label for="p_email">Correo electrónico</label><input id="p_email" value="${esc(Store.user.email)}" disabled><span class="hint">Para cambiarlo ve a <a class="link-btn" href="#/cuenta/seguridad">Seguridad</a>.</span></div>
+      <div class="field"><label for="p_tel">Teléfono</label><input id="p_tel" name="telefono" type="tel" inputmode="tel" autocomplete="tel" value="${esc(u.telefono || "")}"></div>
+    </div><p class="form-msg" id="profMsg" role="status"></p><button class="btn" type="submit">Guardar cambios</button></form>`;
+  } else if (accountTab === "direcciones") {
+    const list = Store.addresses || [];
+    const editing = addrEditing === "new" ? null : list.find(a => a.id === addrEditing);
+    body = `<div class="acct-section-h"><h2 class="acct-h" style="margin:0">Direcciones</h2>${addrEditing ? "" : `<button type="button" class="btn btn--ghost btn--sm" data-addr-new>${uiIcon("plus", 16)} Agregar dirección</button>`}</div>
+      ${addrEditing ? addressForm(editing) : ""}
+      ${list.length ? `<div class="addr-grid">${list.map(addressCard).join("")}</div>` : (addrEditing ? "" : emptyState("direcciones", "Sin direcciones guardadas", "Guarda una dirección para completar tus pedidos más rápido.", `<button type="button" class="btn" data-addr-new>Agregar dirección</button>`))}`;
+  } else if (accountTab === "seguridad") {
+    body = `<h2 class="acct-h">Seguridad</h2>
+      <div class="panel"><h3 class="panel-h">Correo de la cuenta</h3><p class="muted-text" style="margin:0 0 14px">Correo actual: <b>${esc(Store.user.email)}</b></p>
+        <form id="emailForm" class="stack" novalidate><div class="field"><label for="ne_email">Nuevo correo</label><input id="ne_email" name="email" type="email" autocomplete="email" required></div>
+        <p class="form-msg" id="emailMsg" role="status"></p><button class="btn btn--ghost" type="submit">Cambiar correo</button></form></div>
+      <div class="panel"><h3 class="panel-h">Cambiar contraseña</h3><form id="pwForm" class="stack" novalidate>
+        ${pwField("pw_n", "nueva", "Nueva contraseña", "new-password", 'minlength="8"')}${pwField("pw_n2", "nueva2", "Repetir nueva contraseña", "new-password")}
+        <p class="form-msg" id="pwMsg" role="status"></p><button class="btn" type="submit">Actualizar contraseña</button></form></div>
+      <div class="panel"><h3 class="panel-h">Recuperar contraseña</h3><p class="muted-text" style="margin:0 0 14px">Te enviaremos un enlace a ${esc(Store.user.email)} para crear una contraseña nueva.</p>
+        <button type="button" class="btn btn--ghost" id="sendRecovery">Enviar enlace de recuperación</button><p class="form-msg" id="recMsg2" role="status"></p></div>
+      <div class="panel"><h3 class="panel-h">Sesiones</h3><div class="btns-row">
+        <button type="button" class="btn btn--ghost" data-logout>Cerrar sesión</button>
+        <button type="button" class="btn btn--ghost" data-logout="global">Cerrar sesión en todos los dispositivos</button></div></div>`;
+  } else {
+    const pref = u.preferencias || {};
+    body = `<h2 class="acct-h">Configuración</h2><form id="prefForm" class="panel" novalidate><h3 class="panel-h">Comunicaciones</h3><div class="switches">
+        <label class="switch">Recibir novedades y lanzamientos por correo<input type="checkbox" name="novedadesEmail" ${pref.novedadesEmail ? "checked" : ""}></label>
+        <label class="switch">Recibir novedades por WhatsApp<input type="checkbox" name="novedadesWhatsapp" ${pref.novedadesWhatsapp ? "checked" : ""}></label>
+      </div><p class="muted-text" style="font-size:12.5px;margin:12px 0 16px">Tus preferencias se guardan en tu cuenta. Aquí aparecerán más opciones (tallas favoritas, beneficios de cliente frecuente…).</p>
+      <p class="form-msg" id="prefMsg" role="status"></p><button class="btn" type="submit">Guardar preferencias</button></form>`;
+  }
+  const since = u.created_at ? new Date(u.created_at).toLocaleDateString("es-CO", { month: "long", year: "numeric" }) : "";
+  return `<section class="page wrap acct-page">
+    ${crumbs([{ label: "Inicio", href: "#/" }, { label: "Mi cuenta", href: "#/cuenta" }, ...(accountTab !== "resumen" ? [{ label: ACC_SECTIONS.find(([k]) => k === accountTab)[1] }] : [])])}
+    <header class="acct-head"><span class="acct-avatar" aria-hidden="true">${uiIcon("datos", 30)}</span>
+      <div class="acct-id"><h1 class="acct-name">${esc(name || "Mi cuenta")}</h1><p class="acct-mail">${esc(Store.user.email)}</p></div>
+      ${since ? `<span class="acct-since">Cliente desde ${esc(since)}</span>` : ""}</header>
+    <div class="acct">
+      <nav class="acct-nav" aria-label="Secciones de mi cuenta">
+        ${ACC_SECTIONS.map(([k, l]) => `<a href="#/cuenta${k === "resumen" ? "" : "/" + k}" class="${accountTab === k ? "on" : ""}" ${accountTab === k ? 'aria-current="page"' : ""}>${uiIcon(k)}<span>${l}</span></a>`).join("")}
+        <button type="button" class="acct-nav__out" data-logout>${uiIcon("salir")}<span>Cerrar sesión</span></button>
+      </nav>
+      <div class="acct-main">${body}</div>
+    </div></section><div class="section"></div>`;
 }
+
+async function doLogout(scope) {
+  try { await sb.auth.signOut(scope === "global" ? { scope: "global" } : undefined); } catch {}
+  await onSession(null, "SIGNED_OUT");
+  AdminData.loaded = false; addrEditing = null;
+  toast("Sesión cerrada");
+  if (currentRoute().name === "cuenta") { if (location.hash !== "#/cuenta") location.hash = "#/cuenta"; else render(); } else render();
+}
+
 function mountAccount() {
   const msg = (id, text, ok) => { const el = $("#" + id); if (el) { el.textContent = text; el.classList.toggle("ok", !!ok); } };
   const busy = (form, on) => $$("button", form).forEach(b => b.disabled = on);
+  $$("[data-pw]").forEach(b => b.onclick = () => { const i = $("#" + b.dataset.pw); const show = i.type === "password"; i.type = show ? "text" : "password"; b.setAttribute("aria-pressed", show); b.setAttribute("aria-label", show ? "Ocultar contraseña" : "Mostrar contraseña"); });
   $("#loginForm") && ($("#loginForm").onsubmit = async e => {
-    e.preventDefault(); const f = Object.fromEntries(new FormData(e.target)); busy(e.target, true);
+    e.preventDefault(); const f = Object.fromEntries(new FormData(e.target));
+    if (!/^\S+@\S+\.\S+$/.test(f.email.trim()) || !f.password) return msg("loginMsg", "Escribe tu correo y tu contraseña.");
+    busy(e.target, true);
     const { error } = await sb.auth.signInWithPassword({ email: f.email.trim(), password: f.password });
     busy(e.target, false);
     if (error) return msg("loginMsg", friendly(error));
-    toast("Sesión iniciada");
+    const next = e.target.dataset.next; toast("Sesión iniciada");
+    if (next) { if (next === "checkout") checkout.step = 2; location.hash = "#/" + next; }
   });
-  $("#forgotBtn") && ($("#forgotBtn").onclick = async () => {
-    const email = $("#l_email").value.trim();
-    if (!/^\S+@\S+\.\S+$/.test(email)) return msg("loginMsg", "Escribe tu correo arriba y vuelve a pulsar “¿Olvidaste tu contraseña?”.");
+  $("#recoverForm") && ($("#recoverForm").onsubmit = async e => {
+    e.preventDefault(); const email = $("#rc_email").value.trim();
+    if (!/^\S+@\S+\.\S+$/.test(email)) return msg("recoverMsg", "Escribe un correo válido.");
+    busy(e.target, true);
     const { error } = await sb.auth.resetPasswordForEmail(email, { redirectTo: SITE_URL });
-    msg("loginMsg", error ? friendly(error) : "Si el correo está registrado, te enviamos un enlace para restablecer la contraseña.", !error);
+    busy(e.target, false);
+    msg("recoverMsg", error ? friendly(error) : "Si el correo está registrado, te enviamos un enlace para restablecer la contraseña. Revisa también tu carpeta de spam.", !error);
   });
   $("#regForm") && ($("#regForm").onsubmit = async e => {
     e.preventDefault(); const f = Object.fromEntries(new FormData(e.target));
-    if (!f.nombre.trim() || !/^\S+@\S+\.\S+$/.test(f.email.trim()) || digits(f.telefono).length < 7) return msg("regMsg", "Completa nombre, correo válido y teléfono.");
+    if (!f.nombre.trim()) return msg("regMsg", "Escribe tu nombre completo.");
+    if (!/^\S+@\S+\.\S+$/.test(f.email.trim())) return msg("regMsg", "Escribe un correo válido.");
     if (f.password.length < 8) return msg("regMsg", "La contraseña debe tener al menos 8 caracteres.");
+    if (f.password !== f.password2) return msg("regMsg", "Las contraseñas no coinciden.");
     busy(e.target, true);
-    const { data, error } = await sb.auth.signUp({ email: f.email.trim(), password: f.password, options: { data: { nombre: f.nombre.trim(), telefono: f.telefono.trim() }, emailRedirectTo: SITE_URL } });
+    const { data, error } = await sb.auth.signUp({ email: f.email.trim(), password: f.password, options: { data: { nombre: f.nombre.trim().replace(/^@+/, "") }, emailRedirectTo: SITE_URL } });
     busy(e.target, false);
     if (error) return msg("regMsg", friendly(error));
-    if (!data.session) { e.target.reset(); msg("regMsg", "¡Cuenta creada! Te enviamos un correo para confirmarla. Después podrás iniciar sesión.", true); }
-    else toast("Cuenta creada");
+    if (!data.session) {
+      $("#regCard").innerHTML = `<span class="wordmark auth-mark">${esc(S().tienda.nombre)}</span><div class="auth-done">${uiIcon("seguridad", 34)}<h1 class="auth-title">Revisa tu correo</h1>
+        <p class="auth-sub">Te enviamos un enlace a <b>${esc(f.email.trim())}</b> para confirmar tu cuenta. Después podrás iniciar sesión.</p>
+        <a href="#/cuenta" class="btn btn--block">Ir a iniciar sesión</a></div>`;
+    } else { toast("Cuenta creada"); const next = e.target.dataset.next; location.hash = next ? "#/" + next : "#/cuenta"; }
   });
   $("#profForm") && ($("#profForm").onsubmit = async e => {
     e.preventDefault(); const f = Object.fromEntries(new FormData(e.target));
-    if (!f.nombre.trim()) return msg("profMsg", "El nombre es obligatorio.");
-    try { await saveProfile({ nombre: f.nombre.trim(), telefono: f.telefono.trim() }); msg("profMsg", "Datos guardados.", true); updateCounts(); } catch (err) { msg("profMsg", friendly(err)); }
+    const nombre = f.nombre.trim().replace(/^@+/, "");
+    if (!nombre) return msg("profMsg", "El nombre es obligatorio.");
+    try { await saveProfile({ nombre, telefono: f.telefono.trim() }); msg("profMsg", "Datos guardados.", true); updateCounts(); $(".acct-name").textContent = nombre; } catch (err) { msg("profMsg", friendly(err)); }
   });
-  $("#shipProfForm") && ($("#shipProfForm").onsubmit = async e => {
-    e.preventDefault(); const f = Object.fromEntries(new FormData(e.target));
-    try { await saveProfile(Object.fromEntries(Object.entries(f).map(([k, v]) => [k, v.trim()]))); msg("shipMsg", "Datos de envío guardados. Se usarán en tu próximo pedido.", true); } catch (err) { msg("shipMsg", friendly(err)); }
+  $("#emailForm") && ($("#emailForm").onsubmit = async e => {
+    e.preventDefault(); const email = $("#ne_email").value.trim();
+    if (!/^\S+@\S+\.\S+$/.test(email)) return msg("emailMsg", "Escribe un correo válido.");
+    if (email.toLowerCase() === String(Store.user.email).toLowerCase()) return msg("emailMsg", "Ese ya es tu correo actual.");
+    const { error } = await sb.auth.updateUser({ email }, { emailRedirectTo: SITE_URL });
+    msg("emailMsg", error ? friendly(error) : "Te enviamos un enlace de confirmación. El cambio se aplica cuando lo confirmes (Supabase puede pedirlo en ambos correos).", !error);
   });
   $("#pwForm") && ($("#pwForm").onsubmit = async e => {
     e.preventDefault(); const f = Object.fromEntries(new FormData(e.target));
@@ -2154,16 +2575,44 @@ function mountAccount() {
     if (error) return msg("pwMsg", friendly(error));
     e.target.reset(); msg("pwMsg", "Contraseña actualizada.", true);
   });
-  $("#logoutBtn") && ($("#logoutBtn").onclick = async () => { await sb.auth.signOut(); toast("Sesión cerrada"); });
-  $$("[data-acctab]").forEach(b => b.onclick = () => { accountTab = b.dataset.acctab; render(); });
+  $("#sendRecovery") && ($("#sendRecovery").onclick = async () => {
+    const { error } = await sb.auth.resetPasswordForEmail(Store.user.email, { redirectTo: SITE_URL });
+    msg("recMsg2", error ? friendly(error) : "Enlace enviado. Revisa tu correo.", !error);
+  });
+  $("#prefForm") && ($("#prefForm").onsubmit = async e => {
+    e.preventDefault(); const fd = new FormData(e.target);
+    const pref = { ...(Store.profile?.preferencias || {}), novedadesEmail: !!fd.get("novedadesEmail"), novedadesWhatsapp: !!fd.get("novedadesWhatsapp") };
+    try { await saveProfile({ preferencias: pref }); msg("prefMsg", "Preferencias guardadas.", true); } catch (err) { msg("prefMsg", friendly(err)); }
+  });
+  const acct = $(".acct-main");
+  if (acct) acct.onclick = async e => {
+    const t = e.target;
+    const re = () => render();
+    if (t.closest("[data-addr-new]")) { addrEditing = "new"; re(); return; }
+    if (t.closest("[data-addr-cancel]")) { addrEditing = null; re(); return; }
+    const ed = t.closest("[data-addr-edit]"); if (ed) { addrEditing = ed.dataset.addrEdit; re(); return; }
+    const df = t.closest("[data-addr-default]"); if (df) { try { await Addresses.setDefault(df.dataset.addrDefault); toast("Dirección predeterminada actualizada"); re(); } catch (err) { toast(friendly(err)); } return; }
+    const dl = t.closest("[data-addr-del]"); if (dl) { if (!confirm("¿Eliminar esta dirección?")) return; try { await Addresses.remove(dl.dataset.addrDel); toast("Dirección eliminada"); re(); } catch (err) { toast(friendly(err)); } return; }
+  };
+  $("#addrForm") && ($("#addrForm").onsubmit = async e => {
+    e.preventDefault(); const form = e.target; const fd = Object.fromEntries(new FormData(form));
+    const need = ["destinatario", "telefono", "ciudad", "barrio", "direccion"].filter(k => !String(fd[k] || "").trim());
+    $$(".field", form).forEach(f => f.classList.remove("invalid"));
+    if (need.length) { need.forEach(k => $(`[name="${k}"]`, form).closest(".field").classList.add("invalid")); msg("addrMsg", "Completa los campos obligatorios."); return; }
+    if (digits(fd.telefono).length < 7) return msg("addrMsg", "El teléfono no es válido.");
+    try { await Addresses.save({ ...Object.fromEntries(Object.entries(fd).map(([k, v]) => [k, String(v).trim()])), predeterminada: !!fd.predeterminada, id: form.dataset.id || undefined }); addrEditing = null; toast("Dirección guardada"); render(); }
+    catch (err) { msg("addrMsg", friendly(err)); }
+  });
 }
 function showRecoveryModal() {
   openModal("Nueva contraseña", `<form id="recForm" class="stack" novalidate>
     <div class="field"><label for="rec_pw">Nueva contraseña</label><input id="rec_pw" type="password" autocomplete="new-password" minlength="8" required></div>
+    <div class="field"><label for="rec_pw2">Confirmar contraseña</label><input id="rec_pw2" type="password" autocomplete="new-password" required></div>
     <p class="form-msg" id="recMsg" role="alert"></p><button class="btn" type="submit">Guardar contraseña</button></form>`);
   $("#recForm").onsubmit = async e => {
     e.preventDefault(); const pw = $("#rec_pw").value;
     if (pw.length < 8) { $("#recMsg").textContent = "Mínimo 8 caracteres."; return; }
+    if (pw !== $("#rec_pw2").value) { $("#recMsg").textContent = "Las contraseñas no coinciden."; return; }
     const { error } = await sb.auth.updateUser({ password: pw });
     if (error) { $("#recMsg").textContent = friendly(error); return; }
     closeModal(); toast("Contraseña actualizada. Ya puedes usar tu cuenta.");
@@ -2178,7 +2627,8 @@ function viewNotFound(text) {
    PANEL DE ADMINISTRACIÓN (#/admin) — Supabase Auth + rol 'admin' (RLS)
    ========================================================================= */
 const AdminData = {
-  loaded: false, orders: [], customers: [], movements: [],
+  loaded: false, orders: [], customers: [], movements: [], sales: [], storeCustomers: [], notifs: [],
+  salesReady: true, notifsReady: true,
   async load() {
     await Api.loadCatalog({ admin: true });
     const [orders, customers] = await Promise.all([
@@ -2187,12 +2637,42 @@ const AdminData = {
     ]);
     this.orders = orders.map(o => ({ ...o, order_items: (o.order_items || []).sort((a, b) => a.id - b.id), order_status_history: (o.order_status_history || []).sort((a, b) => a.created_at.localeCompare(b.created_at)) }));
     this.customers = customers;
+    // Módulos de la migración 02. Si aún no se ejecutó, el resto del panel sigue funcionando.
+    try {
+      const [sales, sc] = await Promise.all([
+        fetchAll(() => sb.from("sales").select("*, sale_items(*)").order("created_at", { ascending: false })),
+        fetchAll(() => sb.from("store_customers").select("*").order("created_at", { ascending: false }))
+      ]);
+      this.sales = sales.map(s => ({ ...s, sale_items: (s.sale_items || []).sort((a, b) => a.id - b.id) }));
+      this.storeCustomers = sc; this.salesReady = true;
+    } catch (e) { if (!isSetupError(e)) throw e; this.sales = []; this.storeCustomers = []; this.salesReady = false; }
+    await this.loadNotifs();
     this.loaded = true;
   },
+  async loadNotifs() {
+    const { data, error } = await sb.from("admin_notifications").select("*").eq("archivada", false).order("created_at", { ascending: false }).limit(200);
+    if (error) { this.notifs = []; this.notifsReady = !isSetupError(error); return; }
+    this.notifs = data; this.notifsReady = true;
+  },
   order(numero) { return this.orders.find(o => o.numero === numero); },
+  sale(numero) { return this.sales.find(s => s.numero === numero); },
+  unread() { return this.notifs.filter(n => !n.leida).length; },
+  /* Transacciones unificadas para métricas: pedidos online + ventas físicas (mismo formato) */
+  tx(canal = "todos") {
+    const on = canal === "fisica" ? [] : this.orders.map(o => ({ ...o, canal: "online" }));
+    const fi = canal === "online" ? [] : this.sales.map(s => ({ id: s.id, numero: s.numero, created_at: s.created_at,
+      estado: s.estado === "anulada" ? "cancelado" : "entregado", subtotal: s.subtotal, descuento: s.descuento, envio: null, total: s.total,
+      metodo_pago: s.metodo_pago, user_id: s.user_id, cliente: s.cliente, order_items: s.sale_items, canal: "fisica" }));
+    return [...on, ...fi].sort((a, b) => String(b.created_at).localeCompare(String(a.created_at)));
+  },
   num: v => v == null ? null : Number(v)
 };
 const isAdmin = () => Store.profile?.role === "admin";
+
+/* Medios de pago de la venta física (sin integraciones: solo registro) */
+const POS_METHODS = { efectivo: "Efectivo", transferencia: "Transferencia", tarjeta_debito: "Tarjeta débito", tarjeta_credito: "Tarjeta crédito", nequi: "Nequi", otro: "Otro" };
+const DOC_TYPES = { CC: "Cédula de ciudadanía", CE: "Cédula de extranjería", NIT: "NIT", TI: "Tarjeta de identidad", PP: "Pasaporte", PPT: "Permiso por protección temporal", RC: "Registro civil", OTRO: "Otro", NINGUNO: "Sin documento" };
+const payLabel = (k, canal) => canal === "fisica" || (!S().pagos[k] && POS_METHODS[k]) ? (POS_METHODS[k] || k) : PaymentGateway.label(k);
 
 /* Métricas financieras. Ventas netas de productos = Σ subtotales − descuentos.
    Ganancia bruta = ventas con costo registrado − costo de esos productos (costo guardado en cada venta). */
@@ -2275,12 +2755,19 @@ function seriesByDay(orders, range, valueFn) {
 
 const Admin = {
   shell(active, content) {
-    const nuevos = AdminData.orders.filter(o => o.estado === "nuevo").length;
-    const links = [["", "Resumen"], ["estadisticas", "Estadísticas"], ["pedidos", "Pedidos", nuevos], ["productos", "Productos"], ["inventario", "Inventario"], ["clientes", "Clientes"], ["ajustes", "Configuración"]];
+    const nuevos = AdminData.orders.filter(o => o.estado === "nuevo").length; const unread = AdminData.unread();
+    const links = [["", "Resumen"], ["ventas", "Ventas"], ["pedidos", "Pedidos", nuevos], ["productos", "Productos"], ["inventario", "Inventario"], ["clientes", "Clientes"],
+      ["facturacion", "Facturación"], ["notificaciones", "Notificaciones", unread, "notifNav"], ["estadisticas", "Estadísticas"], ["ajustes", "Configuración"]];
     return `<div class="adm"><aside class="adm__side"><span class="wordmark">${esc(S().tienda.nombre)}</span><small>Administración</small>
-        ${links.map(([k, l, n]) => `<a href="#/admin${k ? "/" + k : ""}" ${active === k ? 'aria-current="page"' : ""}>${l}${n ? `<em>${n}</em>` : ""}</a>`).join("")}
+        ${links.map(([k, l, n, id]) => `<a href="#/admin${k ? "/" + k : ""}" ${active === k ? 'aria-current="page"' : ""}>${l}<em ${id ? `id="${id}"` : ""} ${n ? "" : "hidden"}>${n || ""}</em></a>`).join("")}
         <div class="bottom"><a href="#/" target="_blank" rel="noopener">Ver tienda ↗</a><a href="#" id="admLogout">Cerrar sesión</a></div></aside>
-      <div class="adm__main"><div class="live" id="liveBadge" title="Actualización en tiempo real"><i></i>En vivo</div>${content}</div></div>`;
+      <div class="adm__main">
+        <div class="adm__top">
+          <div class="live" id="liveBadge" title="Actualización en tiempo real"><i></i>En vivo</div>
+          <div class="bell-wrap"><button type="button" class="bell" id="bellBtn" aria-haspopup="true" aria-expanded="false" aria-controls="notifPop" aria-label="Notificaciones">${uiIcon("bell", 20)}<em id="bellCount" ${unread ? "" : "hidden"}>${unread > 99 ? "99+" : unread}</em></button>
+            <div class="notif-pop" id="notifPop" hidden role="dialog" aria-label="Notificaciones"></div></div>
+        </div>
+        ${content}</div></div>`;
   },
   login(msg = "") {
     const noRole = Store.user && !isAdmin();
@@ -2308,16 +2795,19 @@ const Admin = {
 
   /* ---------- Resumen (dashboard) ---------- */
   dashboard() {
-    const O = AdminData.orders; const P = Store.products;
-    const mes = periodRange("mes"); const oMes = O.filter(o => inRange(o, mes) && countable(o));
-    const f = finance(oMes);
+    const O = AdminData.orders; const P = Store.products; const T = AdminData.tx();
+    const mes = periodRange("mes"); const tMes = T.filter(o => inRange(o, mes) && countable(o));
+    const f = finance(tMes);
+    const online = tMes.filter(t => t.canal === "online").length, fisicas = tMes.filter(t => t.canal === "fisica").length;
     const agotados = P.filter(p => p.visible && !Catalog.hasStock(p));
     const bajos = P.filter(p => Catalog.stockState(p) === "bajo");
     const clientes = AdminData.customers.filter(c => c.role === "client").length;
-    const top = productRanking(O.filter(o => inRange(o, mes) && countable(o))).sort((a, b) => b.unidades - a.unidades).slice(0, 5);
+    const top = productRanking(tMes).sort((a, b) => b.unidades - a.unidades).slice(0, 5);
     const alerts = [];
+    if (!AdminData.salesReady || !AdminData.notifsReady) alerts.push(`Falta ejecutar <code>supabase/migracion_02_ventas_facturacion_notificaciones.sql</code> para activar ventas físicas, facturación, direcciones y notificaciones.`);
     if (!storeWhatsApp()) alerts.push(`Configura el número de WhatsApp. <a class="link-btn" href="#/admin/ajustes">Configuración</a>`);
     if (!P.length) alerts.push(`El catálogo está vacío. <a class="link-btn" href="#/admin/productos">Cargar catálogo original</a>`);
+    const unread = AdminData.unread(); if (unread) alerts.push(`${unread} notificación(es) sin leer. <a class="link-btn" href="#/admin/notificaciones?estado=no_leidas">Ver notificaciones</a>`);
     const nuevos = O.filter(o => o.estado === "nuevo").length; if (nuevos) alerts.push(`${nuevos} pedido(s) nuevo(s) por confirmar. <a class="link-btn" href="#/admin/pedidos?estado=nuevo">Ver pedidos</a>`);
     const pagoPend = O.filter(o => o.estado === "pago_pendiente").length; if (pagoPend) alerts.push(`${pagoPend} pedido(s) con pago pendiente. <a class="link-btn" href="#/admin/pedidos?estado=pago_pendiente">Ver</a>`);
     if (agotados.length) alerts.push(`${agotados.length} producto(s) agotados (ocultos en la tienda). <a class="link-btn" href="#/admin/inventario?f=agotado">Reponer stock</a>`);
@@ -2325,25 +2815,30 @@ const Admin = {
     const sinStock = P.filter(p => p.variantes.some(v => v.stock == null)).length; if (sinStock) alerts.push(`${sinStock} producto(s) sin inventario registrado: se venden sin control de stock. <a class="link-btn" href="#/admin/inventario?f=sin_registrar">Registrar stock</a>`);
     const sinPrecio = P.filter(p => !Catalog.priceRange(p)).length; if (sinPrecio) alerts.push(`${sinPrecio} producto(s) sin precio. <a class="link-btn" href="#/admin/productos?f=sinprecio">Asignar precios</a>`);
     const sinCosto = P.filter(p => p.costo == null).length; if (sinCosto) alerts.push(`${sinCosto} producto(s) sin costo registrado: su ganancia no se puede calcular. <a class="link-btn" href="#/admin/productos?f=sincosto">Registrar costos</a>`);
-    return this.shell("", `<div class="adm__head"><div><h1>Resumen</h1><p>${new Date().toLocaleDateString("es-CO", { month: "long", year: "numeric" })} · pedidos no cancelados</p></div><a class="btn btn--ghost" href="#/admin/estadisticas">Ver estadísticas</a></div>
+    if (AdminData.salesReady && !S().facturacion?.nit) alerts.push(`Completa los datos del negocio para los documentos de venta. <a class="link-btn" href="#/admin/facturacion">Facturación</a>`);
+    const recentSales = AdminData.sales.slice(0, 5);
+    return this.shell("", `<div class="adm__head"><div><h1>Resumen</h1><p>${new Date().toLocaleDateString("es-CO", { month: "long", year: "numeric" })} · ventas online y físicas, sin cancelaciones ni anulaciones</p></div>
+      <div class="head-actions"><a class="btn" href="#/admin/ventas/nueva">+ Nueva venta</a><a class="btn btn--ghost" href="#/admin/estadisticas">Ver estadísticas</a></div></div>
       <div class="kpis">
-        <div class="kpi"><small>Ventas del mes</small><b>${money(f.ventas)}</b></div>
+        <div class="kpi"><small>Ventas del mes</small><b>${money(f.ventas)}</b><em>${online} online · ${fisicas} en tienda</em></div>
         <div class="kpi"><small>Ganancia bruta del mes</small><b>${f.hayCostos ? money(f.ganancia) : "—"}</b>${f.hayCostos ? (f.cobertura < 99.5 ? `<em>sobre ${pct(f.cobertura)} de las ventas (con costo)</em>` : `<em>margen ${pct(f.margen)}</em>`) : "<em>Sin costos registrados</em>"}</div>
-        <div class="kpi"><small>Pedidos del mes</small><b>${f.pedidos}</b><em>ticket ${f.ticket == null ? "—" : money(f.ticket)}</em></div>
-        <div class="kpi"><small>Clientes registrados</small><b>${clientes}</b></div>
+        <div class="kpi"><small>Pedidos y ventas del mes</small><b>${f.pedidos}</b><em>ticket ${f.ticket == null ? "—" : money(f.ticket)}</em></div>
+        <div class="kpi"><small>Clientes registrados</small><b>${clientes}</b><em>${AdminData.storeCustomers.length} de mostrador</em></div>
         <div class="kpi"><small>Productos agotados</small><b>${agotados.length}</b></div>
         <div class="kpi"><small>Stock bajo</small><b>${bajos.length}</b></div>
       </div>
       ${alerts.length ? `<div class="card-w"><h2>Alertas</h2>${alerts.map(a => `<div class="adm-note">⚠ <span>${a}</span></div>`).join("")}</div>` : ""}
-      <div class="ed"><div class="card-w"><h2>Pedidos recientes</h2>${this.ordersTable(O.slice(0, 8))}</div>
-      <div class="card-w"><h2>Más vendidos del mes</h2>${hbars(top.map(t => ({ label: t.nombre, value: t.unidades, sub: money(t.ventas) })), { fmt: v => `${v} u.` })}</div></div>`);
+      <div class="ed"><div class="card-w"><h2>Pedidos online recientes</h2>${this.ordersTable(O.slice(0, 6))}</div>
+      <div class="card-w"><h2>Más vendidos del mes</h2>${hbars(top.map(t => ({ label: t.nombre, value: t.unidades, sub: money(t.ventas) })), { fmt: v => `${v} u.` })}</div></div>
+      ${AdminData.salesReady ? `<div class="card-w"><div class="acct-section-h"><h2 style="margin:0">Ventas en tienda recientes</h2><a class="link-btn" href="#/admin/ventas">Ver todas</a></div>${this.salesTable(recentSales)}</div>` : ""}`);
   },
 
   /* ---------- Estadísticas ---------- */
-  statState: { period: "mes", from: "", to: "", base: "todos", sort: "unidades" },
+  statState: { period: "mes", from: "", to: "", base: "todos", sort: "unidades", canal: "todos" },
   stats() {
     const st = this.statState; const O = AdminData.orders; const P = Store.products; const r = periodRange(st.period, st.from, st.to);
-    const valid = O.filter(o => countable(o, st.base));
+    const T = AdminData.tx(st.canal);
+    const valid = T.filter(o => countable(o, st.base));
     const inP = valid.filter(o => inRange(o, r)); const f = finance(inP);
     const sum = id => finance(valid.filter(o => inRange(o, periodRange(id)))).ventas;
     const cnt = (id, pred = () => true) => O.filter(o => inRange(o, periodRange(id)) && pred(o)).length;
@@ -2351,19 +2846,24 @@ const Admin = {
     const clientes = AdminData.customers.filter(c => c.role === "client");
     const compradores = new Set(O.filter(o => o.user_id && o.estado !== "cancelado").map(o => o.user_id)).size;
     const ranking = productRanking(inP).sort((a, b) => b[st.sort] - a[st.sort]);
-    const byPay = {}; inP.forEach(o => { const k = o.metodo_pago; byPay[k] = byPay[k] || { ventas: 0, n: 0 }; byPay[k].ventas += Number(o.subtotal) - Number(o.descuento || 0); byPay[k].n++; });
+    const byPay = {}; inP.forEach(o => { const k = (o.canal === "fisica" ? "f:" : "o:") + o.metodo_pago; byPay[k] = byPay[k] || { ventas: 0, n: 0, label: payLabel(o.metodo_pago, o.canal) + (o.canal === "fisica" ? " (tienda)" : " (online)") }; byPay[k].ventas += Number(o.subtotal) - Number(o.descuento || 0); byPay[k].n++; });
     const hasCostLine = arr => arr.some(o => o.order_items.some(i => i.costo_total != null && i.subtotal != null));
+    const S_ = AdminData.sales; const sMes = S_.filter(s => inRange(s, mes));
     const periods = [["hoy", "Hoy"], ["7d", "Últimos 7 días"], ["mes", "Este mes"], ["mes_ant", "Mes anterior"], ["anio", "Este año"], ["todo", "Todo"], ["custom", "Rango personalizado"]];
+    const unit = (r.end - r.start) / 864e5 > 62 ? "mes" : "día";
     return this.shell("estadisticas", `<div class="adm__head"><div><h1>Estadísticas</h1><p>Ventas ≠ ganancia. La ganancia bruta usa el costo guardado en cada venta. No incluye envíos asumidos, publicidad, comisiones, impuestos ni otros gastos.</p></div></div>
-      <div class="card-w"><h2>Ventas</h2><div class="kpis kpis--6">
+      <div class="card-w"><h2>Ventas ${st.canal === "online" ? "online" : st.canal === "fisica" ? "en tienda física" : "(online + tienda física)"}</h2><div class="kpis kpis--6">
         <div class="kpi"><small>Hoy</small><b>${money(sum("hoy"))}</b></div><div class="kpi"><small>Últimos 7 días</small><b>${money(sum("7d"))}</b></div>
         <div class="kpi"><small>Mes actual</small><b>${money(sum("mes"))}</b></div><div class="kpi"><small>Mes anterior</small><b>${money(sum("mes_ant"))}</b></div>
         <div class="kpi"><small>Año</small><b>${money(sum("anio"))}</b></div><div class="kpi"><small>Total</small><b>${money(sum("todo"))}</b></div></div></div>
       <div class="ed ed--even">
-        <div class="card-w"><h2>Pedidos</h2><div class="kv">
+        <div class="card-w"><h2>Pedidos online</h2><div class="kv">
           <span>Pedidos de hoy</span><b>${cnt("hoy")}</b><span>Pedidos del mes</span><b>${cnt("mes")}</b>
           <span>Pendientes (en curso)</span><b>${O.filter(o => !["entregado", "cancelado"].includes(o.estado)).length}</b>
           <span>Entregados</span><b>${O.filter(o => o.estado === "entregado").length}</b><span>Cancelados</span><b>${O.filter(o => o.estado === "cancelado").length}</b></div></div>
+        <div class="card-w"><h2>Ventas en tienda</h2><div class="kv">
+          <span>Ventas de hoy</span><b>${S_.filter(s => inRange(s, periodRange("hoy")) && s.estado !== "anulada").length}</b><span>Ventas del mes</span><b>${sMes.filter(s => s.estado !== "anulada").length}</b>
+          <span>Anuladas</span><b>${S_.filter(s => s.estado === "anulada").length}</b><span>Clientes de mostrador</span><b>${AdminData.storeCustomers.length}</b></div></div>
         <div class="card-w"><h2>Clientes</h2><div class="kv">
           <span>Clientes registrados</span><b>${clientes.length}</b><span>Nuevos este mes</span><b>${clientes.filter(c => inRange(c, mes)).length}</b>
           <span>Registrados que han comprado</span><b>${compradores}</b><span>Pedidos de invitados</span><b>${O.filter(o => !o.user_id && o.estado !== "cancelado").length}</b></div></div>
@@ -2374,20 +2874,21 @@ const Admin = {
       <div class="card-w stat-filter"><div class="tools" style="margin:0">
         <label class="sr-only" for="stPeriod">Período</label><select id="stPeriod">${periods.map(([k, l]) => `<option value="${k}" ${st.period === k ? "selected" : ""}>${l}</option>`).join("")}</select>
         <span id="stCustom" ${st.period === "custom" ? "" : "hidden"}><input type="date" id="stFrom" value="${esc(st.from)}" aria-label="Desde"> <input type="date" id="stTo" value="${esc(st.to)}" aria-label="Hasta"></span>
-        <label class="sr-only" for="stBase">Pedidos considerados</label><select id="stBase"><option value="todos" ${st.base === "todos" ? "selected" : ""}>Pedidos no cancelados</option><option value="entregados" ${st.base === "entregados" ? "selected" : ""}>Solo entregados</option></select>
+        <label class="sr-only" for="stCanal">Canal</label><select id="stCanal"><option value="todos" ${st.canal === "todos" ? "selected" : ""}>Online + tienda física</option><option value="online" ${st.canal === "online" ? "selected" : ""}>Solo online</option><option value="fisica" ${st.canal === "fisica" ? "selected" : ""}>Solo tienda física</option></select>
+        <label class="sr-only" for="stBase">Pedidos considerados</label><select id="stBase"><option value="todos" ${st.base === "todos" ? "selected" : ""}>No cancelados / no anuladas</option><option value="entregados" ${st.base === "entregados" ? "selected" : ""}>Solo entregados / completadas</option></select>
       </div></div>
       <div class="card-w"><h2>Resumen financiero · ${esc(r.label)}</h2><div class="kpis kpis--5">
         <div class="kpi"><small>Ventas netas de productos</small><b>${money(f.ventas)}</b>${f.envios ? `<em>+ ${money(f.envios)} en envíos cobrados</em>` : ""}</div>
         <div class="kpi"><small>Costo de productos vendidos</small><b>${f.hayCostos ? money(f.costo) : "—"}</b>${f.unidadesSinCosto ? `<em>${f.unidadesSinCosto} u. sin costo registrado</em>` : ""}</div>
         <div class="kpi"><small>Ganancia bruta</small><b>${f.hayCostos ? money(f.ganancia) : "—"}</b><em>${f.hayCostos ? `margen ${pct(f.margen)}${f.cobertura < 99.5 ? ` · calculada sobre ${money(f.ventasConCosto)} (${pct(f.cobertura)} de las ventas)` : ""}` : "Registra costos para calcularla"}</em></div>
-        <div class="kpi"><small>Pedidos</small><b>${f.pedidos}</b>${f.lineasSinPrecio ? `<em>${f.lineasSinPrecio} línea(s) con precio a confirmar</em>` : ""}</div>
+        <div class="kpi"><small>Pedidos y ventas</small><b>${f.pedidos}</b>${f.lineasSinPrecio ? `<em>${f.lineasSinPrecio} línea(s) con precio a confirmar</em>` : ""}</div>
         <div class="kpi"><small>Ticket promedio</small><b>${f.ticket == null ? "—" : money(f.ticket)}</b></div></div></div>
       <div class="ed ed--even">
-        <div class="card-w"><h2>Ventas por ${(r.end - r.start) / 864e5 > 62 ? "mes" : "día"}</h2>${barChart(seriesByDay(inP, r, os => finance(os).ventas), { label: "Ventas" })}</div>
-        <div class="card-w"><h2>Pedidos por ${(r.end - r.start) / 864e5 > 62 ? "mes" : "día"}</h2>${barChart(seriesByDay(inP, r, os => os.length), { fmt: v => String(Math.round(v)), label: "Pedidos" })}</div>
-        <div class="card-w"><h2>Ganancia bruta por ${(r.end - r.start) / 864e5 > 62 ? "mes" : "día"}</h2>${barChart(seriesByDay(inP, r, os => hasCostLine(os) ? finance(os).ganancia : (os.length ? null : 0)), { label: "Ganancia bruta", nullTip: "Sin costo registrado" })}</div>
-        <div class="card-w"><h2>Costo de productos vendidos por ${(r.end - r.start) / 864e5 > 62 ? "mes" : "día"}</h2>${barChart(seriesByDay(inP, r, os => hasCostLine(os) ? finance(os).costo : (os.length ? null : 0)), { label: "Costo", nullTip: "Sin costo registrado" })}</div>
-        <div class="card-w"><h2>Ventas por método de pago</h2>${hbars(Object.entries(byPay).map(([k, v]) => ({ label: PaymentGateway.label(k), value: v.ventas, sub: `${v.n} pedido(s)` })))}</div>
+        <div class="card-w"><h2>Ventas por ${unit}</h2>${barChart(seriesByDay(inP, r, os => finance(os).ventas), { label: "Ventas" })}</div>
+        <div class="card-w"><h2>Pedidos y ventas por ${unit}</h2>${barChart(seriesByDay(inP, r, os => os.length), { fmt: v => String(Math.round(v)), label: "Pedidos y ventas" })}</div>
+        <div class="card-w"><h2>Ganancia bruta por ${unit}</h2>${barChart(seriesByDay(inP, r, os => hasCostLine(os) ? finance(os).ganancia : (os.length ? null : 0)), { label: "Ganancia bruta", nullTip: "Sin costo registrado" })}</div>
+        <div class="card-w"><h2>Costo de productos vendidos por ${unit}</h2>${barChart(seriesByDay(inP, r, os => hasCostLine(os) ? finance(os).costo : (os.length ? null : 0)), { label: "Costo", nullTip: "Sin costo registrado" })}</div>
+        <div class="card-w"><h2>Ventas por método de pago</h2>${hbars(Object.values(byPay).sort((a, b) => b.ventas - a.ventas).map(v => ({ label: v.label, value: v.ventas, sub: `${v.n} transacción(es)` })))}</div>
         <div class="card-w"><h2>Más vendidos (unidades)</h2>${hbars(productRanking(inP).sort((a, b) => b.unidades - a.unidades).slice(0, 8).map(t => ({ label: t.nombre, value: t.unidades })), { fmt: v => `${v} u.` })}</div>
       </div>
       <div class="card-w"><div class="tools" style="justify-content:space-between"><h2 style="margin:0">Ganancia por producto · ${esc(r.label)}</h2>
@@ -2405,6 +2906,7 @@ const Admin = {
     $("#stFrom") && ($("#stFrom").onchange = e => { st.from = e.target.value; if (st.period === "custom") re(); });
     $("#stTo") && ($("#stTo").onchange = e => { st.to = e.target.value; if (st.period === "custom") re(); });
     $("#stBase").onchange = e => { st.base = e.target.value; re(); };
+    $("#stCanal").onchange = e => { st.canal = e.target.value; re(); };
     $("#stSort").onchange = e => { st.sort = e.target.value; re(); };
   },
 
@@ -2640,505 +3142,3 @@ const Admin = {
     return d;
   },
   mountEditor(id) {
-    const self = this; const f = $("#prodForm"); if (!f) return;
-    const rerender = () => { self.collect(); $("#app").innerHTML = self.editor(id); self.mountEditor(id); bindAdminShell(); };
-    const updMargin = () => { self.collect(); const d = self.draft; const m = Catalog.margin(d, d.precio); $("#marginBox").innerHTML = m ? `<b>${money(m.unit)}</b> <span>(${pct(m.pct)} del precio)</span>` : d.costo == null ? "Costo no configurado" : "Sin precio de venta"; };
-    $("#e_precio").oninput = updMargin; $("#e_costo").oninput = updMargin;
-    f.addEventListener("click", async e => {
-      const t = e.target; const d = self.draft;
-      if (t.dataset.imgdel != null) { self.collect(); d.imagenes.splice(+t.dataset.imgdel, 1); rerender(); }
-      else if (t.dataset.imgmove != null) { self.collect(); const i = +t.dataset.imgmove, j = i + +t.dataset.dir; if (j >= 0 && j < d.imagenes.length) { [d.imagenes[i], d.imagenes[j]] = [d.imagenes[j], d.imagenes[i]]; rerender(); } }
-      else if (t.dataset.vdel != null) { self.collect(); if (d.variantes.length > 1) { d.variantes.splice(+t.dataset.vdel, 1); rerender(); } else toast("El producto necesita al menos una variante."); }
-      else if (t.dataset.cdel != null) { self.collect(); const [c] = d.colores.splice(+t.dataset.cdel, 1); d.variantes.forEach(v => { if (v.color === c.nombre) v.color = null; }); d.imagenes.forEach(im => { if (im.color === c.nombre) im.color = null; }); rerender(); }
-      else if (t.id === "cAdd") { self.collect(); d.colores.push({ nombre: "Nuevo color", hex: "#111111" }); rerender(); }
-      else if (t.id === "vAdd") { self.collect(); d.variantes.push({ id: null, talla: "", color: d.colores[0]?.nombre || null, stock: 0, precio: null }); rerender(); }
-      else if (t.id === "vGen") {
-        self.collect(); const sizes = $("#vGenSizes").value.split(",").map(s => s.trim()).filter(Boolean);
-        if (!sizes.length) return toast("Escribe las tallas separadas por comas.");
-        const cols = d.colores.length ? d.colores.map(c => c.nombre) : [null];
-        sizes.forEach(sz => cols.forEach(c => { if (!d.variantes.find(v => v.talla === sz && v.color === c)) d.variantes.push({ id: null, talla: sz, color: c, stock: 0, precio: null }); }));
-        d.variantes = d.variantes.filter(v => v.talla); rerender();
-      }
-      else if (t.id === "imgAddUrl") { self.collect(); const u = $("#imgUrl").value.trim(); if (!/^(https:\/\/|catalogo\/)/.test(u)) return toast("Ingresa una URL válida (https://…)"); d.imagenes.push({ src: u, color: null }); rerender(); }
-      else if (t.id === "delProd") {
-        const res = await confirmTyped({ title: "Eliminar producto", word: d.ref, message: `Vas a eliminar <b>${esc(d.nombre)}</b>. Los pedidos existentes conservan su copia.` });
-        if (!res) return;
-        try { await rpc("admin_delete_product", { p_id: d.id }); self.draft = null; toast("Producto eliminado"); await Api.loadCatalog({ admin: true }); location.hash = "#/admin/productos"; } catch (err) { toast(friendly(err)); }
-      }
-    });
-    $("#imgUp").onchange = async e => {
-      self.collect(); const files = [...e.target.files]; if (!files.length) return;
-      toast(`Subiendo ${files.length} foto(s)…`);
-      for (const file of files) {
-        try {
-          const blob = await resizeImage(file, 1400);
-          const path = `${self.draft.id}/${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 6)}.jpg`;
-          const { error } = await sb.storage.from("productos").upload(path, blob, { contentType: "image/jpeg", upsert: false });
-          if (error) throw error;
-          self.draft.imagenes.push({ src: sb.storage.from("productos").getPublicUrl(path).data.publicUrl, color: null });
-        } catch (err) { toast("No se pudo subir la imagen: " + friendly(err)); }
-      }
-      rerender();
-    };
-    $("#saveProd").onclick = async () => {
-      const d = self.collect();
-      if (!d.nombre) { toast("El nombre es obligatorio."); $("#e_nombre").focus(); return; }
-      if (!d.variantes.length || d.variantes.some(v => !v.talla)) { toast("Cada variante necesita una talla (usa 'Única' si no aplica)."); return; }
-      const keys = d.variantes.map(v => v.talla + "|" + (v.color || "")); if (new Set(keys).size !== keys.length) { toast("Hay variantes repetidas (misma talla y color)."); return; }
-      if (d.colores.length && d.variantes.some(v => !v.color)) { toast("Asigna un color a cada variante, o elimina los colores."); return; }
-      if (!d.slug || d._new) d.slug = slugify(d.nombre) + "-" + slugify(d.ref);
-      if (Store.products.some(p => p.slug === d.slug && p.id !== d.id)) d.slug += "-" + Date.now().toString(36).slice(-3);
-      const btn = $("#saveProd"); btn.disabled = true; btn.textContent = "Guardando…";
-      try {
-        const payload = toDbProduct(d); if (d._new) delete payload.orden;
-        const newId = await rpc("admin_save_product", { p: payload });
-        await Api.loadCatalog({ admin: true }); self.draft = null; toast("Producto guardado");
-        if (d._new) location.hash = "#/admin/productos/" + encodeURIComponent(newId); else render();
-      } catch (err) { toast(friendly(err)); btn.disabled = false; btn.textContent = "Guardar"; }
-    };
-  },
-
-  /* ---------- Inventario ---------- */
-  invState: { q: "", f: "", cat: "" },
-  inventory(query) {
-    const st = this.invState; if (query?.f) st.f = query.f;
-    const unset = Store.products.reduce((a, p) => a + p.variantes.filter(v => v.stock == null).length, 0);
-    return this.shell("inventario", `<div class="adm__head"><div><h1>Inventario</h1><p>Stock por talla y color. Umbral de stock bajo: ${lowThreshold()} unidades (cámbialo en Configuración).</p></div></div>
-      ${unset ? `<div class="card-w"><h2>Registrar inventario inicial</h2><p class="muted-text" style="font-size:13px;margin:0 0 10px">${unset} variantes no tienen stock registrado (el catálogo original no traía cantidades). Mientras tanto se venden sin control de stock. Puedes cargarlas una por una abajo o asignar una cantidad a todas:</p>
-        <div class="tools" style="margin:0"><input type="number" id="initQty" min="0" value="1" aria-label="Unidades" style="width:110px"><select id="initCat" aria-label="Categoría"><option value="">Todas las categorías</option>${Store.categories.map(c => `<option value="${c.slug}">${esc(c.nombre)}</option>`).join("")}</select><button class="btn btn--ghost" id="initBtn">Asignar a variantes sin registrar</button></div></div>` : ""}
-      <div class="tools"><input type="search" id="iq" placeholder="Buscar producto o referencia" value="${esc(st.q)}" aria-label="Buscar">
-        <select id="icat" aria-label="Categoría"><option value="">Todas las categorías</option>${Store.categories.map(c => `<option value="${c.slug}" ${st.cat === c.slug ? "selected" : ""}>${esc(c.nombre)}</option>`).join("")}</select>
-        <select id="if" aria-label="Estado"><option value="">Todos los estados</option>${[["bajo", "Stock bajo"], ["agotado", "Agotado"], ["sin_registrar", "Sin registrar"], ["normal", "Normal"]].map(([k, l]) => `<option value="${k}" ${st.f === k ? "selected" : ""}>${l}</option>`).join("")}</select></div>
-      <div class="table-wrap" id="itable"></div>
-      <div class="card-w" style="margin-top:16px"><h2>Movimientos de inventario</h2><div id="movs"><p class="muted-text">Cargando…</p></div></div>`);
-  },
-  async mountInventory() {
-    const st = this.invState; const th = lowThreshold();
-    const vstate = v => v.stock == null ? "sin_registrar" : v.stock === 0 ? "agotado" : v.stock <= th ? "bajo" : "normal";
-    const tag = s => ({ agotado: '<span class="tag err">Agotada</span>', bajo: '<span class="tag warn">Bajo</span>', sin_registrar: '<span class="tag">Sin registrar</span>', normal: '<span class="tag ok">Normal</span>' })[s];
-    const paint = () => {
-      const q = norm(st.q); const rows = [];
-      for (const p of Store.products) { if (st.cat && p.categoria !== st.cat) continue; if (q && !norm(p.nombre + " " + p.ref).includes(q)) continue;
-        for (const v of p.variantes) { const s = vstate(v); if (st.f && (st.f === "agotado" ? s !== "agotado" : s !== st.f)) continue; rows.push({ p, v, s }); } }
-      $("#itable").innerHTML = `<table class="t"><thead><tr><th>Producto</th><th>Talla</th><th>Color</th><th>Stock</th><th>Estado</th><th>Motivo</th><th></th></tr></thead><tbody>
-        ${rows.slice(0, 400).map(({ p, v, s }) => `<tr><td><b>${esc(p.nombre)}</b><br><span class="ref">${esc(p.ref)}</span></td><td>${esc(v.talla)}</td><td>${esc(v.color || "—")}</td>
-          <td><input type="number" min="0" step="1" class="stock-in" data-vid="${v.id}" value="${v.stock ?? ""}" placeholder="—" aria-label="Stock ${esc(p.nombre)} ${esc(v.talla)}"></td><td>${tag(s)}</td>
-          <td><select class="mov-in" data-vid="${v.id}" aria-label="Motivo"><option value="entrada">Entrada / reposición</option><option value="ajuste">Ajuste manual</option><option value="devolucion">Devolución</option></select></td>
-          <td><button class="btn btn--ghost btn--sm" data-save-stock="${v.id}">Guardar</button></td></tr>`).join("") || `<tr><td colspan="7" class="empty-row">Sin resultados.</td></tr>`}
-        ${rows.length > 400 ? `<tr><td colspan="7" class="empty-row">Mostrando 400 de ${rows.length}. Usa los filtros para acotar.</td></tr>` : ""}</tbody></table>`;
-    };
-    $("#iq").oninput = e => { st.q = e.target.value; paint(); };
-    $("#icat").onchange = e => { st.cat = e.target.value; paint(); };
-    $("#if").onchange = e => { st.f = e.target.value; paint(); };
-    $("#itable").onclick = async e => {
-      const b = e.target.closest("[data-save-stock]"); if (!b) return;
-      const vid = +b.dataset.saveStock; const inp = $(`.stock-in[data-vid="${vid}"]`); const val = inp.value === "" ? null : Math.round(Number(inp.value));
-      if (val != null && (isNaN(val) || val < 0)) return toast("El stock debe ser 0 o mayor.");
-      b.disabled = true;
-      try { await rpc("admin_set_stock", { p_variant_id: vid, p_stock: val, p_tipo: $(`.mov-in[data-vid="${vid}"]`).value, p_nota: "Panel de inventario" }); await Api.loadCatalog({ admin: true }); toast("Stock actualizado"); paint(); loadMovs(); }
-      catch (err) { toast(friendly(err)); b.disabled = false; }
-    };
-    $("#initBtn") && ($("#initBtn").onclick = async () => {
-      const qty = Math.round(Number($("#initQty").value)); if (isNaN(qty) || qty < 0) return toast("Cantidad no válida.");
-      const cat = $("#initCat").value || null;
-      if (!confirm(`¿Asignar ${qty} unidad(es) a todas las variantes sin stock registrado${cat ? " de " + Catalog.categoryName(cat) : ""}?`)) return;
-      try { const n = await rpc("admin_init_unset_stock", { p_stock: qty, p_categoria: cat }); toast(`${n} variantes actualizadas`); await Api.loadCatalog({ admin: true }); render(); } catch (err) { toast(friendly(err)); }
-    });
-    const TIPOS = { entrada: "Entrada", venta: "Venta", devolucion: "Devolución", ajuste: "Ajuste", cancelacion: "Cancelación", reactivacion: "Reactivación", eliminacion_pedido: "Pedido eliminado", otro: "Otro" };
-    const loadMovs = async () => {
-      const { data, error } = await sb.from("inventory_movements").select("*").order("created_at", { ascending: false }).limit(150);
-      if (error) { $("#movs").innerHTML = `<p class="muted-text">${esc(friendly(error))}</p>`; return; }
-      $("#movs").innerHTML = data.length ? `<div class="table-wrap"><table class="t"><thead><tr><th>Fecha</th><th>Producto</th><th>Variante</th><th>Motivo</th><th>Cambio</th><th>Stock</th><th>Detalle</th></tr></thead><tbody>
-        ${data.map(m => `<tr><td>${fmtDate(m.created_at)}</td><td>${esc(Catalog.byId(m.product_id)?.nombre || m.product_id || "—")}</td><td>${esc(m.talla || "")}${m.color ? " · " + esc(m.color) : ""}</td><td>${esc(TIPOS[m.tipo] || m.tipo)}</td>
-          <td class="${m.cantidad < 0 ? "neg" : "pos"}">${m.cantidad > 0 ? "+" : ""}${m.cantidad}</td><td>${m.stock_anterior ?? "—"} → ${m.stock_nuevo}</td><td>${esc(m.nota || "")}</td></tr>`).join("")}</tbody></table></div>` : '<p class="muted-text">Aún no hay movimientos.</p>';
-    };
-    paint(); loadMovs();
-  },
-
-  /* ---------- Clientes ---------- */
-  customers() {
-    const map = new Map();
-    AdminData.customers.forEach(u => map.set("u:" + u.id, { id: u.id, nombre: u.nombre || "(sin nombre)", email: u.email, telefono: u.telefono, ciudad: u.ciudad, barrio: u.barrio, direccion: u.direccion, registrado: true, role: u.role, creado: u.created_at, pedidos: [] }));
-    AdminData.orders.forEach(o => {
-      const k = o.user_id && map.has("u:" + o.user_id) ? "u:" + o.user_id : "t:" + digits(o.cliente.telefono);
-      if (!map.has(k)) map.set(k, { nombre: o.cliente.nombre, email: o.cliente.email, telefono: o.cliente.telefono, ciudad: o.cliente.ciudad, registrado: false, pedidos: [] });
-      map.get(k).pedidos.push(o);
-    });
-    const list = [...map.values()].sort((a, b) => (b.pedidos.length - a.pedidos.length));
-    const regs = AdminData.customers.filter(c => c.role === "client").length;
-    return this.shell("clientes", `<div class="adm__head"><div><h1>Clientes</h1><p>${regs} con cuenta · ${list.filter(c => !c.registrado).length} invitados (agrupados por teléfono).</p></div></div>
-      ${list.length ? `<div class="table-wrap"><table class="t"><thead><tr><th>Cliente</th><th>Contacto</th><th>Dirección</th><th>Tipo</th><th>Registro</th><th>Pedidos</th><th>Total comprado</th><th></th></tr></thead><tbody>
-        ${list.map(c => `<tr><td><b>${esc(c.nombre)}</b></td><td>${esc(c.telefono || "")}<br><span class="ref" style="text-transform:none;letter-spacing:0">${esc(c.email || "")}</span></td>
-          <td>${esc([c.direccion, c.barrio, c.ciudad].filter(Boolean).join(", ") || "—")}</td>
-          <td>${c.role === "admin" ? '<span class="tag dark">Admin</span>' : c.registrado ? '<span class="tag ok">Cuenta</span>' : '<span class="tag">Invitado</span>'}</td>
-          <td>${c.creado ? new Date(c.creado).toLocaleDateString("es-CO") : "—"}</td>
-          <td>${c.pedidos.length ? c.pedidos.map(o => `<a class="link-btn" href="#/admin/pedidos/${esc(o.numero)}">${esc(o.numero)}</a>`).join(" ") : "—"}</td>
-          <td>${money(c.pedidos.filter(o => o.estado !== "cancelado").reduce((a, o) => a + Number(o.total), 0))}</td>
-          <td>${c.registrado && c.role !== "admin" ? `<button class="link-btn danger" data-deluser="${esc(c.id)}">Eliminar</button>` : ""}</td></tr>`).join("")}
-      </tbody></table></div>` : `<div class="card-w"><p class="muted-text" style="margin:0">Aún no hay clientes.</p></div>`}
-      <p class="muted-text" style="font-size:12px;margin-top:12px">Eliminar un cliente borra su cuenta, perfil y favoritos. Sus pedidos se conservan con la copia de los datos de envío.</p>`);
-  },
-  mountCustomers() {
-    $$("[data-deluser]").forEach(b => b.onclick = async () => {
-      const u = AdminData.customers.find(x => x.id === b.dataset.deluser); if (!u) return;
-      const n = AdminData.orders.filter(o => o.user_id === u.id).length;
-      const res = await confirmTyped({ title: "Eliminar cliente", word: "ELIMINAR", message: `Vas a eliminar la cuenta de <b>${esc(u.nombre || u.email)}</b> (${esc(u.email)}). Se borran su acceso, perfil y favoritos. ${n ? `Sus ${n} pedido(s) <b>se conservan</b> con los datos de envío copiados.` : ""} <b>Es permanente.</b>` });
-      if (!res) return;
-      try { await rpc("admin_delete_user", { p_user_id: u.id }); toast("Cliente eliminado"); await AdminData.load(); render(); } catch (err) { toast(friendly(err)); }
-    });
-  },
-
-  /* ---------- Configuración ---------- */
-  settings() {
-    const s = S(); const f = (id, label, val, type = "text", attrs = "") => `<div class="field"><label for="${id}">${label}</label><input id="${id}" name="${id}" type="${type}" value="${esc(val ?? "")}" ${attrs}></div>`;
-    return this.shell("ajustes", `<div class="adm__head"><div><h1>Configuración</h1><p>Se guarda en Supabase y se aplica en todos los dispositivos.</p></div><button class="btn" id="saveSet">Guardar configuración</button></div>
-      <form id="setForm" class="ed" novalidate><div>
-        <div class="card-w"><h2>WhatsApp</h2><div class="fg">
-          ${f("wa_numero", "Número oficial de WhatsApp", s.whatsapp.numero, "tel", 'placeholder="573XXXXXXXXX" inputmode="tel"')}
-          <div class="field"><label>Vista previa del enlace</label><span class="hint" id="waPreview">https://wa.me/${esc(storeWhatsApp())}</span></div>
-          <div class="field full"><span class="hint">Formato internacional sin “+”, espacios ni guiones. Colombia: 57 + celular (ej. 573128043151).</span></div>
-          <div class="field full"><label for="wa_msg">Mensaje del botón de contacto</label><input id="wa_msg" name="wa_msg" value="${esc(s.whatsapp.mensajeGeneral)}"></div>
-        </div></div>
-        <div class="card-w"><h2>Información de la tienda</h2><div class="fg">
-          ${f("t_nombre", "Nombre", s.tienda.nombre)}${f("t_eslogan", "Eslogan", s.tienda.eslogan)}
-          <div class="field full"><label for="t_dir">Dirección / contacto</label><input id="t_dir" name="t_dir" value="${esc(s.tienda.direccion)}"></div>
-          ${f("t_ig", "Instagram (URL)", s.tienda.instagram, "url")}${f("t_logo", "Logo (URL de imagen, opcional)", s.tienda.logo)}
-        </div></div>
-        <div class="card-w"><h2>Pedidos y envíos</h2><div class="fg">
-          ${f("o_prefijo", "Prefijo del número de pedido", s.pedidos.prefijo)}
-          ${f("o_envio", "Costo de envío fijo (COP)", s.pedidos.costoEnvio, "number", 'min="0" step="100" placeholder="Vacío = a coordinar"')}
-          <div class="field full"><label for="o_texto">Texto de envíos (se muestra en productos)</label><textarea id="o_texto" name="o_texto">${esc(s.pedidos.textoEnvio)}</textarea></div>
-          <div class="field full"><label for="o_cambios">Política de cambios y devoluciones (opcional)</label><textarea id="o_cambios" name="o_cambios">${esc(s.pedidos.politicaCambios)}</textarea></div>
-        </div></div>
-      </div><div>
-        <div class="card-w"><h2>Métodos de pago</h2><div class="switches">
-          ${Object.entries(PAYMENT_PROVIDERS).map(([k, pv]) => pv.integrado ? `<label class="switch">${esc(s.pagos[k]?.nombre || pv.nombre)}<input type="checkbox" name="pay_${k}" ${s.pagos[k]?.activo ? "checked" : ""}></label>
-            <div class="field"><label for="pd_${k}">Texto para el cliente</label><input id="pd_${k}" name="pd_${k}" value="${esc(s.pagos[k]?.descripcion || "")}"></div>`
-            : `<div class="switch" style="cursor:default;color:var(--muted)">${esc(pv.nombre)}<span class="tag">Requiere integración</span></div>`).join("")}
-        </div></div>
-        <div class="card-w"><h2>Catálogo e inventario</h2><div class="switches">
-          <label class="switch">Permitir pedir productos sin precio (se confirma por WhatsApp)<input type="checkbox" name="c_sinprecio" ${s.catalogo.permitirSinPrecio ? "checked" : ""}></label></div>
-          <div class="fg" style="margin-top:12px">${f("c_pp", "Productos por página", s.catalogo.porPagina, "number", 'min="8" max="96"')}${f("i_umbral", "Umbral de stock bajo (unidades)", s.inventario.umbralStockBajo, "number", 'min="0" max="999"')}</div></div>
-        <div class="card-w"><h2>Seguridad de la cuenta</h2>
-          <p class="muted-text" style="font-size:13px;margin:0 0 10px">Sesión: <b>${esc(Store.user?.email || "")}</b></p>
-          <div class="field"><label for="ap_email">Cambiar correo</label><input id="ap_email" type="email" autocomplete="email" placeholder="nuevo@correo.com"></div>
-          <button type="button" class="btn btn--ghost" id="admEmail" style="margin-top:8px">Cambiar correo</button>
-          <div class="field" style="margin-top:16px"><label for="ap_n">Nueva contraseña (mín. 10)</label><input id="ap_n" type="password" autocomplete="new-password"></div>
-          <div class="field" style="margin-top:8px"><label for="ap_n2">Repetir contraseña</label><input id="ap_n2" type="password" autocomplete="new-password"></div>
-          <button type="button" class="btn btn--ghost" id="admPw" style="margin-top:8px">Cambiar contraseña</button>
-          <p class="form-msg" id="secMsg" role="status"></p>
-          <button type="button" class="btn btn--ghost" id="admLogout2" style="margin-top:8px">Cerrar sesión</button>
-        </div>
-      </div></form>`);
-  },
-  mountSettings() {
-    $("#wa_numero").oninput = e => { let d = digits(e.target.value); if (d.length === 10 && d.startsWith("3")) d = "57" + d; $("#waPreview").textContent = "https://wa.me/" + d; };
-    $("#saveSet").onclick = async () => {
-      const fd = Object.fromEntries(new FormData($("#setForm"))); const s = structuredClone(S());
-      let wa = digits(fd.wa_numero); if (wa.length === 10 && wa.startsWith("3")) wa = "57" + wa;
-      if (!/^\d{11,15}$/.test(wa)) { toast("Número de WhatsApp no válido. Usa el formato 573XXXXXXXXX."); return; }
-      s.whatsapp.numero = wa; s.whatsapp.mensajeGeneral = fd.wa_msg.trim() || DEFAULT_SETTINGS.whatsapp.mensajeGeneral;
-      s.tienda.nombre = fd.t_nombre.trim() || "WESNOCK"; s.tienda.eslogan = fd.t_eslogan.trim(); s.tienda.direccion = fd.t_dir.trim(); s.tienda.instagram = fd.t_ig.trim(); s.tienda.logo = fd.t_logo.trim();
-      s.pedidos.prefijo = fd.o_prefijo.trim() || "WES-"; s.pedidos.costoEnvio = fd.o_envio === "" ? null : Math.max(0, Math.round(Number(fd.o_envio)));
-      s.pedidos.textoEnvio = fd.o_texto.trim(); s.pedidos.politicaCambios = fd.o_cambios.trim();
-      for (const k of Object.keys(PAYMENT_PROVIDERS)) if (PAYMENT_PROVIDERS[k].integrado) s.pagos[k] = { ...s.pagos[k], activo: !!fd["pay_" + k], descripcion: (fd["pd_" + k] || "").trim() || DEFAULT_SETTINGS.pagos[k].descripcion };
-      s.catalogo.permitirSinPrecio = !!fd.c_sinprecio; s.catalogo.porPagina = Math.min(96, Math.max(8, parseInt(fd.c_pp) || 24));
-      s.inventario.umbralStockBajo = Math.max(0, parseInt(fd.i_umbral) || 0);
-      try { await Api.saveSettings(s); applyBranding(); toast("Configuración guardada"); render(); } catch (e) { toast(friendly(e)); }
-    };
-    const sec = (t, ok) => { $("#secMsg").textContent = t; $("#secMsg").classList.toggle("ok", !!ok); };
-    $("#admEmail").onclick = async () => {
-      const email = $("#ap_email").value.trim(); if (!/^\S+@\S+\.\S+$/.test(email)) return sec("Correo no válido.");
-      const { error } = await sb.auth.updateUser({ email }, { emailRedirectTo: SITE_URL + "#/admin" });
-      sec(error ? friendly(error) : "Te enviamos un enlace de confirmación. El cambio se aplica cuando lo confirmes (según la configuración de Supabase, puede pedirse en ambos correos).", !error);
-    };
-    $("#admPw").onclick = async () => {
-      const a = $("#ap_n").value, b = $("#ap_n2").value;
-      if (a.length < 10) return sec("La contraseña debe tener al menos 10 caracteres."); if (a !== b) return sec("Las contraseñas no coinciden.");
-      const { error } = await sb.auth.updateUser({ password: a });
-      if (error) return sec(friendly(error)); $("#ap_n").value = $("#ap_n2").value = ""; sec("Contraseña actualizada.", true);
-    };
-    $("#admLogout2").onclick = () => sb.auth.signOut();
-  }
-};
-
-async function importProducts(items, { withCost }) {
-  const box = $("#impProgress"); if (box) box.hidden = false;
-  const chunk = 25; let done = 0;
-  try {
-    for (let i = 0; i < items.length; i += chunk) {
-      const part = items.slice(i, i + chunk).map(p => { const o = toDbProduct({ ...p, variantes: (p.variantes || []).map(v => ({ ...v, id: null })) }, { withCost, withIds: false }); return o; });
-      await rpc("admin_import_products", { p_items: part });
-      done += part.length; if (box) box.textContent = `Importando… ${done} / ${items.length}`;
-    }
-    toast(`${done} productos importados`);
-  } catch (e) { toast("Importación detenida en " + done + ": " + friendly(e)); }
-  if (box) box.hidden = true;
-  await Api.loadCatalog({ admin: true }); render();
-}
-function validProduct(p) { return p && typeof p.nombre === "string" && typeof p.categoria === "string" && Array.isArray(p.variantes) && p.variantes.length > 0; }
-function download(name, text) {
-  const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([text], { type: "application/json" })); a.download = name;
-  document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 500);
-}
-async function resizeImage(file, max) {
-  const bmp = await createImageBitmap(file); const k = Math.min(1, max / Math.max(bmp.width, bmp.height));
-  const c = document.createElement("canvas"); c.width = Math.round(bmp.width * k); c.height = Math.round(bmp.height * k);
-  c.getContext("2d").drawImage(bmp, 0, 0, c.width, c.height);
-  return new Promise(r => c.toBlob(r, "image/jpeg", 0.85));
-}
-function bindAdminShell() { const lo = $("#admLogout"); if (lo) lo.onclick = async e => { e.preventDefault(); await sb.auth.signOut(); }; }
-
-/* =========================================================================
-   DRAWERS / OVERLAYS
-   ========================================================================= */
-function openDrawer(id) {
-  closeAll(); lastFocus = document.activeElement;
-  if (id === "cart") { CartService.reconcile(); renderCart(); updateCounts(); }
-  const d = $("#" + id); d.classList.add("open"); d.setAttribute("aria-hidden", "false"); document.body.classList.add("lock");
-  setTimeout(() => $("button, a, input", $(".drawer__panel", d))?.focus(), 60);
-}
-function openSearch() {
-  closeAll(); lastFocus = document.activeElement;
-  const s = $("#search"); s.classList.add("open"); s.setAttribute("aria-hidden", "false"); document.body.classList.add("lock");
-  renderSearch($("#q").value); setTimeout(() => $("#q").focus(), 80);
-}
-function openMenu() {
-  closeAll(); lastFocus = document.activeElement;
-  const m = $("#mnav"); m.classList.add("open"); m.setAttribute("aria-hidden", "false"); $("#burger").setAttribute("aria-expanded", "true"); document.body.classList.add("lock");
-  setTimeout(() => $("a", $(".mnav__list"))?.focus(), 60);
-}
-function closeAll(restore) {
-  const wasOpen = $(".drawer.open, .search.open, .mnav.open, .modal.open");
-  $$(".drawer.open").forEach(d => { d.classList.remove("open"); d.setAttribute("aria-hidden", "true"); });
-  const s = $("#search"); s.classList.remove("open"); s.setAttribute("aria-hidden", "true");
-  const m = $("#mnav"); m.classList.remove("open"); m.setAttribute("aria-hidden", "true"); $("#burger").setAttribute("aria-expanded", "false");
-  closeModal(); document.body.classList.remove("lock");
-  if (restore && wasOpen && lastFocus && document.contains(lastFocus)) lastFocus.focus();
-}
-document.addEventListener("keydown", e => {
-  if (e.key === "Escape") { closeAll(true); return; }
-  if (e.key !== "Tab") return;
-  const open = $(".modal.open .modal__box, .drawer.open .drawer__panel, .search.open .search__panel, .mnav.open .mnav__panel"); if (!open) return;
-  const f = $$('a[href], button:not([disabled]), input:not([disabled]), select, textarea, [tabindex]:not([tabindex="-1"])', open).filter(el => el.offsetParent !== null); if (!f.length) return;
-  const first = f[0], last = f[f.length - 1];
-  if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); } else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
-});
-function renderSearch(q) {
-  const box = $("#searchRes");
-  if (!q.trim()) { box.innerHTML = `<div class="search__sugg"><span class="label">Categorías</span>${activeCategories().map(c => `<button class="chip" type="button" data-sugg="${esc(c.nombre)}">${esc(c.nombre)}</button>`).join("")}</div>`; return; }
-  const res = searchProducts(q);
-  box.innerHTML = res.length ? `<p class="label">${res.length} ${res.length === 1 ? "resultado" : "resultados"} para “${esc(q)}”</p><div class="sres">${res.slice(0, 24).map(p => `<a href="#/producto/${p.slug}" data-close-search><div class="imgbox">${img(Catalog.imageSm(p.imagenes[0]?.src), p.nombre)}</div><b>${esc(p.nombre)}</b><span>${esc(Catalog.categoryName(p.categoria))} · ${Catalog.priceRange(p) ? money(Catalog.priceRange(p).min) : "Precio a confirmar"}</span></a>`).join("")}</div>
-      ${res.length > 24 ? `<p style="margin-top:20px"><a class="link-u" href="#/tienda?q=${encodeURIComponent(q)}" data-close-search>Ver los ${res.length} resultados</a></p>` : ""}`
-    : `<div class="empty" style="padding:40px 0;text-align:left"><h3>Sin resultados</h3><p>No encontramos productos para “${esc(q)}”. Prueba con “jean”, “gorra”, “polo” o “zapatilla”.</p></div>`;
-}
-let sT;
-$("#q").addEventListener("input", e => { clearTimeout(sT); sT = setTimeout(() => renderSearch(e.target.value), 90); });
-$("#q").addEventListener("keydown", e => { if (e.key === "Enter") { const a = $("#searchRes .sres a"); if (a) { location.hash = a.getAttribute("href"); closeAll(); } } });
-
-/* =========================================================================
-   ROUTER
-   ========================================================================= */
-function currentRoute() {
-  const raw = location.hash.replace(/^#\/?/, ""); const [path, qs] = raw.split("?");
-  const parts = (path || "").split("/").filter(Boolean).map(decodeURIComponent);
-  return { name: parts[0] || "home", param: parts[1], sub: parts[2], parts, query: Object.fromEntries(new URLSearchParams(qs || "")) };
-}
-const LIST_ROUTES = ["tienda", "ropa", "calzado", "accesorios", "mujer", "sale", "categoria"];
-let prevKey = null, renderSeq = 0;
-async function render() {
-  const seq = ++renderSeq; const r = currentRoute(); const app = $("#app");
-  const key = r.parts.join("/"); const changed = prevKey !== key;
-  if (LIST_ROUTES.includes(r.name) && changed) filters = emptyFilters();
-  prevKey = key;
-  const isAdm = r.name === "admin";
-  document.body.classList.toggle("is-admin", isAdm);
-  if (!isAdm) applyBranding();
-  app.onchange = null;
-
-  let html, mount = null;
-  if (isAdm) {
-    if (!Store.user || !isAdmin()) { html = Admin.login(); mount = () => Admin.mountLogin(); }
-    else if (Store.error && isSetupError(Store.error)) html = Admin.setupNeeded();
-    else {
-      if (!AdminData.loaded || !Store.productsAreAdmin) { app.innerHTML = loaderHTML("Cargando panel…"); try { await AdminData.load(); } catch (e) { if (seq !== renderSeq) return; app.innerHTML = Admin.shell("", `<div class="adm-note">${esc(friendly(e))}</div>`); bindAdminShell(); return; } }
-      if (seq !== renderSeq) return;
-      const sec = r.param || "";
-      if (!(sec === "productos" && r.sub)) Admin.draft = null;
-      if (sec === "productos" && r.sub) { html = Admin.editor(r.sub); mount = () => Admin.mountEditor(r.sub); }
-      else if (sec === "productos") { html = Admin.products(r.query); mount = () => Admin.mountProducts(); }
-      else if (sec === "pedidos" && r.sub) { html = Admin.order(r.sub); mount = () => Admin.mountOrder(r.sub); }
-      else if (sec === "pedidos") { html = Admin.orders(r.query); mount = () => Admin.mountOrders(); }
-      else if (sec === "inventario") { html = Admin.inventory(r.query); mount = () => Admin.mountInventory(); }
-      else if (sec === "clientes") { html = Admin.customers(); mount = () => Admin.mountCustomers(); }
-      else if (sec === "ajustes") { html = Admin.settings(); mount = () => Admin.mountSettings(); }
-      else if (sec === "estadisticas") { html = Admin.stats(); mount = () => Admin.mountStats(); }
-      else html = Admin.dashboard();
-    }
-  } else if (!Store.ready) html = loaderHTML("Cargando tienda…");
-  else if (Store.error) html = isSetupError(Store.error) ? viewSetupNeeded() : viewError();
-  else switch (r.name) {
-    case "home": html = viewHome(); mount = mountHome; break;
-    case "categorias": html = viewCategories(); break;
-    case "producto": html = viewProduct(r.param); mount = mountProduct; break;
-    case "favoritos": html = viewFavs(); break;
-    case "cuenta": if (r.query.tab) accountTab = r.query.tab; app.innerHTML = changed ? loaderHTML() : app.innerHTML; html = await viewAccount(); mount = mountAccount; break;
-    case "checkout": html = viewCheckout(); mount = renderCheckoutStep; break;
-    case "pedido": html = await viewOrderDone(r.param); break;
-    default: if (LIST_ROUTES.includes(r.name)) { html = viewList(r); mount = () => mountList(r); } else html = viewNotFound();
-  }
-  if (seq !== renderSeq) return;
-  const y = scrollY;
-  app.innerHTML = html;
-  if (changed) { app.classList.remove("view-enter"); void app.offsetWidth; app.classList.add("view-enter"); }
-  mount && mount();
-  if (isAdm) bindAdminShell();
-  const titles = { home: "Viste lo que te define", tienda: "Tienda", ropa: "Ropa", calzado: "Calzado", accesorios: "Accesorios", mujer: "Mujer", sale: "Sale", categorias: "Categorías", favoritos: "Favoritos", checkout: "Finalizar compra", cuenta: "Mi cuenta", admin: "Administración", pedido: "Pedido " + (r.param || "") };
-  const pt = r.name === "producto" ? Catalog.bySlug(r.param)?.nombre : r.name === "categoria" ? Catalog.category(r.param)?.nombre : titles[r.name];
-  document.title = `${S().tienda.nombre} — ${pt || (Store.ready ? "Página no encontrada" : "Tienda online")}`;
-  $$("[data-nav]").forEach(a => { const on = a.dataset.nav === r.name || (r.name === "categoria" && a.dataset.nav === Catalog.category(r.param)?.grupo); on ? a.setAttribute("aria-current", "page") : a.removeAttribute("aria-current"); });
-  if (changed) { scrollTo({ top: 0, behavior: "instant" }); if (r.name !== "home") app.focus({ preventScroll: true }); } else scrollTo({ top: y, behavior: "instant" });
-  onScroll(); reveal();
-}
-function mountHome() { const hero = $("#hero"); if (!hero) return; const im = $(".hero__media img", hero); const go = () => requestAnimationFrame(() => hero.classList.add("ready")); im.complete ? go() : (im.onload = go, im.onerror = go, setTimeout(go, 1500)); }
-const io = "IntersectionObserver" in window ? new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { rootMargin: "0px 0px -8% 0px", threshold: .08 }) : null;
-function reveal() { $$(".rv:not(.in)").forEach(el => io ? io.observe(el) : el.classList.add("in")); }
-let lastY = 0;
-function onScroll() {
-  const y = scrollY, nav = $("#nav"), hero = $("#hero");
-  nav.classList.toggle("on-dark", !!(hero && y < hero.offsetHeight - 90));
-  const menuOpen = $(".mnav.open, .drawer.open, .search.open");
-  nav.classList.toggle("hide", !menuOpen && y > 400 && y > lastY + 4);
-  if (y < lastY - 4 || y <= 400) nav.classList.remove("hide");
-  lastY = y;
-}
-addEventListener("scroll", onScroll, { passive: true });
-
-/* =========================================================================
-   EVENTOS GLOBALES
-   ========================================================================= */
-document.addEventListener("click", e => {
-  const t = e.target;
-  const ord = t.closest("tr[data-order]"); if (ord) { location.hash = "#/admin/pedidos/" + encodeURIComponent(ord.dataset.order); return; }
-  const fav = t.closest("[data-fav]"); if (fav) { e.preventDefault(); toggleFav(fav.dataset.fav, fav); return; }
-  const quick = t.closest("[data-quick]");
-  if (quick) {
-    e.preventDefault(); const p = Catalog.byId(quick.dataset.quick); const avail = p.variantes.filter(v => Catalog.stockOf(v) > 0);
-    if (avail.length === 1) { try { CartService.add(p, avail[0], 1); afterCartChange(); openDrawer("cart"); } catch (err) { toast(err.message); } }
-    else { location.hash = "#/producto/" + p.slug; toast("Elige talla" + (Catalog.needsColor(p) ? " y color" : "")); }
-    return;
-  }
-  const lq = t.closest("[data-lq]"); if (lq) { const vid = +lq.dataset.vid; const l = CartRepo.get().find(x => x.vid === vid); if (l) { CartService.setQty(vid, l.qty + +lq.dataset.lq); afterCartChange(); } return; }
-  const rm = t.closest("[data-rm]"); if (rm) { const r = CartService.remove(+rm.dataset.rm); afterCartChange(); if (r) toast("Producto eliminado", { label: "Deshacer", fn: () => { CartService.restore(r); afterCartChange(); } }); return; }
-  if (t.closest("[data-clear-cart]")) { if (confirm("¿Vaciar el carrito?")) { CartService.clear(); afterCartChange(); toast("Carrito vacío"); } return; }
-  if (t.closest("[data-go-checkout]")) checkout.step = 1;
-  const acc = t.closest("[data-acc]"); if (acc) accountTab = acc.dataset.acc;
-  if (t.closest("[data-co-next]")) { goStep(2); return; }
-  if (t.closest("[data-co-back]")) { goStep(Math.max(1, checkout.step - 1)); return; }
-  const gto = t.closest("[data-co-goto]"); if (gto) { goStep(+gto.dataset.coGoto); return; }
-  if (t.closest("[data-reset-filters]")) { filters = emptyFilters(); mountList.paint && mountList.paint(); return; }
-  const guide = t.closest("[data-guide]"); if (guide) { const g = SIZE_GUIDES[guide.dataset.guide]; openModal(g.titulo, img(g.img, g.titulo, "", 'loading="eager"')); return; }
-  const sugg = t.closest("[data-sugg]"); if (sugg) { $("#q").value = sugg.dataset.sugg; renderSearch(sugg.dataset.sugg); $("#q").focus(); return; }
-  if (t.closest("[data-open-search]")) { openSearch(); return; }
-  if (t.closest("#cartBtn")) { openDrawer("cart"); return; }
-  if (t.closest("#burger")) { openMenu(); return; }
-  if (t.closest("[data-close-modal]")) { closeModal(); lastFocus?.focus(); return; }
-  if (t.closest("[data-close-drawer]") || t.closest("[data-close-search]") || t.closest("[data-close-mnav]")) { closeAll(!t.closest("a[href^='#/']")); return; }
-  if (t.closest(".mnav a[href^='#/']")) closeAll();
-});
-
-/* =========================================================================
-   TIEMPO REAL (Supabase Realtime)
-   ========================================================================= */
-let refreshT = null;
-function refreshCatalogSoon() {
-  clearTimeout(refreshT);
-  refreshT = setTimeout(async () => {
-    const r = currentRoute();
-    try {
-      if (r.name === "admin" && isAdmin()) {
-        await AdminData.load(); flashLive();
-        if (r.param === "productos" && r.sub) { toast("Hay cambios nuevos (pedidos o stock). Guarda o recarga para verlos."); return; }
-        if (["ajustes"].includes(r.param)) return;
-        const active = document.activeElement; if (active && ["INPUT", "TEXTAREA", "SELECT"].includes(active.tagName) && $("#app").contains(active)) return;
-        render(); return;
-      }
-      await Api.loadCatalog();
-      if (CartService.reconcile()) afterCartChange(); else { updateCounts(); renderCart(); }
-      if (["home", "categorias", "favoritos", ...LIST_ROUTES].includes(r.name)) render();
-      else if (r.name === "producto") { const p = Catalog.bySlug(r.param); if (!p || !Catalog.isShown(p)) render(); else mountProduct.refresh?.(); }
-      else if (r.name === "checkout" && checkout.step < 4) renderCheckoutStep();
-    } catch {}
-  }, 700);
-}
-function flashLive() { const b = $("#liveBadge"); if (b) { b.classList.remove("pulse"); void b.offsetWidth; b.classList.add("pulse"); } }
-let rtChannel = null;
-function subscribeRealtime() {
-  if (rtChannel) sb.removeChannel(rtChannel);
-  const admin = isAdmin();
-  rtChannel = sb.channel("wsk-" + (admin ? "admin" : "store"))
-    .on("postgres_changes", { event: "*", schema: "public", table: "product_variants" }, refreshCatalogSoon)
-    .on("postgres_changes", { event: "*", schema: "public", table: "products" }, refreshCatalogSoon)
-    .on("postgres_changes", { event: "*", schema: "public", table: "store_settings" }, async () => { await Api.loadSettings().catch(() => {}); applyBranding(); })
-    .on("postgres_changes", { event: "*", schema: "public", table: "orders" }, () => {
-      if (admin) refreshCatalogSoon();
-      else if (currentRoute().name === "cuenta" && accountTab === "pedidos") render();
-    });
-  rtChannel.subscribe();
-}
-
-/* =========================================================================
-   INICIO
-   ========================================================================= */
-function applyBranding() {
-  const s = S();
-  $("#brand").innerHTML = s.tienda.logo ? `<img src="${esc(s.tienda.logo)}" alt="${esc(s.tienda.nombre)}">` : `<span class="wordmark">${esc(s.tienda.nombre)}</span>`;
-  $$("[data-wordmark], [data-wordmark-plain], [data-store-name]").forEach(el => el.textContent = s.tienda.nombre);
-  $$("[data-slogan]").forEach(el => el.textContent = s.tienda.eslogan);
-  $$("[data-address]").forEach(el => el.textContent = s.tienda.direccion);
-  $("#year").textContent = new Date().getFullYear();
-  $$("[data-whatsapp]").forEach(a => { a.href = waLink(); a.target = "_blank"; a.rel = "noopener"; });
-  $$("[data-instagram]").forEach(a => { const li = a.closest("li") || a; if (s.tienda.instagram) { a.href = s.tienda.instagram; li.hidden = false; } else li.hidden = true; });
-  const hasSale = Catalog.products().some(p => p.enOferta);
-  const nav = [["tienda", "Tienda"], ["ropa", "Ropa"], ["calzado", "Calzado"], ["accesorios", "Accesorios"], ["mujer", "Mujer"], ...(hasSale ? [["sale", "Sale"]] : [])];
-  $("#navLinks").innerHTML = nav.map(([k, l]) => `<li><a href="#/${k}" data-nav="${k}">${l}</a></li>`).join("");
-  $("#mnavList").innerHTML = nav.map(([k, l]) => `<li><a href="#/${k}">${l} <span>→</span></a></li>`).join("");
-  $("#footCats").innerHTML = Object.entries(GROUPS).map(([k, l]) => `<li><a href="#/${k}">${l}</a></li>`).join("") + `<li><a href="#/categorias">Todas las categorías</a></li>`;
-}
-
-async function onSession(session, event) {
-  const prevUser = Store.user?.id;
-  Store.user = session?.user || null;
-  await Api.loadProfile().catch(() => {});
-  if (Store.user && prevUser !== Store.user.id) {
-    rpc("link_guest_orders").catch(() => {});
-    await mergeLocalFavs().catch(() => {});
-  }
-  await Api.loadFavs().catch(() => {});
-  if (!Store.user) { AdminData.loaded = false; if (Store.productsAreAdmin) await Api.loadCatalog().catch(() => {}); }
-  updateCounts();
-  subscribeRealtime();
-  if (event === "PASSWORD_RECOVERY") showRecoveryModal();
-}
-
-(async function init() {
-  applyBranding(); updateCounts(); render();
-  addEventListener("hashchange", () => { closeAll(); render(); });
-  try {
-    await Promise.all([Api.loadSettings(), Api.loadCatalog()]);
-  } catch (e) { Store.error = e; console.error(e); }
-  Store.ready = true;
-  const { data } = await sb.auth.getSession();
-  await onSession(data.session);
-  // Limpia ?code= de la URL tras confirmar correo / recuperar contraseña (PKCE)
-  if (/[?&]code=/.test(location.search)) history.replaceState(null, "", location.pathname + (location.hash || "#/cuenta"));
-  sb.auth.onAuthStateChange((event, session) => {
-    if (event === "INITIAL_SESSION" || event === "TOKEN_REFRESHED") return;
-    setTimeout(async () => { await onSession(session, event); if (event === "SIGNED_OUT") { AdminData.loaded = false; } render(); }, 0);
-  });
-  applyBranding(); CartService.reconcile(); updateCounts(); renderCart();
-  render();
-})();
-</script>
-</body>
-</html>
